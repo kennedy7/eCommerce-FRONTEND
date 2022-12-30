@@ -12,7 +12,7 @@ const store = configureStore ({
     products: productsReducer,
     [productsApi.reducerPath]: productsApi.reducer,
     middleware: (getDefaultMiddleware)=>{
-      getDefaultMiddleware().concat(productsApi.middleware),
+      getDefaultMiddleware().concat(productsApi.middleware)
     }
   }
 })
