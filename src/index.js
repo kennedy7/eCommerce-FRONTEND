@@ -10,8 +10,10 @@ import { productsApi } from './features/productsApi';
 const store = configureStore ({
   reducer: {
     products: productsReducer,
-    [productsApi.reducerPath]: productsApi.reducer
-    
+    [productsApi.reducerPath]: productsApi.reducer,
+    middleware: (getDefaultMiddleware)=>{
+      getDefaultMiddleware().concat(productsApi.middleware),
+    }
   }
 })
 store.dispatch(productsFetch())
