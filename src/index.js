@@ -4,14 +4,17 @@ import App from './App';
 import {configureStore} from "@reduxjs/toolkit";
 import { Provider } from 'react-redux';
 
-import productsReducer from './features/productsSlice';
+import productsReducer, { productsFetch } from './features/productsSlice';
+import { productsApi } from './features/productsApi';
 
 const store = configureStore ({
   reducer: {
-    products: productsReducer
+    products: productsReducer,
+    [productsApi.reducerPath]: productsApi.reducer
+    
   }
 })
-
+store.dispatch(productsFetch())
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -19,7 +22,6 @@ root.render(
 
     </Provider>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
