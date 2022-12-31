@@ -8,10 +8,11 @@ const initialState = {
 export const productsFetch = createAsyncThunk(
     "products/productsFetch",
    async  ()=>{
-      const response =  await axios.get("http://localhost:5000/products")
+      const response =  await axios.get("http://localhost:5000/products");
       return response?.data
     }
-    )
+    );
+    
 const productsSlice = createSlice({
     name: "products",
     initialState,
@@ -28,7 +29,6 @@ const productsSlice = createSlice({
             state.status = "rejected"
         }
         }
-
 })
 
-export default productsSlice.reducer
+export default productsSlice.reducer;
