@@ -61,6 +61,13 @@
 }
 .home-container h2{
   font-size: 40px;
-  font-weight: 400px;
+  font-weight: 400;
   text-align: center;
+}
+.products{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  
 }
