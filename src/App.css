@@ -112,4 +112,6 @@
   outline: none;
   cursor: pointer;
   background: #4b70e2;
+  color: white;
+  letter-spacing: 1.15px;
 }
