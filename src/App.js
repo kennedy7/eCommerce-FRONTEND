@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,6 +17,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <ToastContainer />
         <NavBar />
         <Routes>
           <Route path="/cart" element={<Cart />} />
