@@ -17,13 +17,13 @@ const cartSlice = createSlice({
       );
       if (itemIndex >= 0) {
         state.cartItems[itemIndex].cartQuantity += 1;
-        toast.info("item duplicated", {
+        toast.info(`${state.cartItems[itemIndex].name} quantity increased`, {
           position: "bottom-left",
         });
       } else {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
-        toast.success("Product added to Cart", {
+        toast.success(`${action.payload.name} added to Cart`, {
           position: "bottom-left",
         });
       }
