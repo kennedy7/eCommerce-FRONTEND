@@ -170,5 +170,26 @@
   cursor: pointer;
   background: none;
   color: gray;
-
+}
+.cart-item .cart-product button:hover {
+  color: black;
+}
+.cart-product-quantity{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 130px;
+  max-width: 100%;
+  border: 0.5px solid rgb(177, 177, 177);
+  border-radius: 5px;
+}
+.cart-product-quantity button {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+}
+.cart-product-quantity .count{
+  padding: 0.7rem 0;
 }
