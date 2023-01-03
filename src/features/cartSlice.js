@@ -56,7 +56,7 @@ const cartSlice = createSlice({
           (cartItem) => cartItem.id !== action.payload.id
         );
         state.cartItems = nextCartItems;
-        toast.info(` Decreased ${action.payload.name} cart quantity`, {
+        toast.error(`${action.payload.name} removed from Cart`, {
           position: "bottom-left",
         });
       }
