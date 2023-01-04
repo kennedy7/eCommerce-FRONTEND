@@ -1,15 +1,21 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   addToCart,
   clearCart,
   decreaseCartQuantity,
+  getTotals,
   removeFromCart,
 } from "../features/cartSlice";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
   const handleRemoveFromCart = (cartItem) => {
     dispatch(removeFromCart(cartItem));
@@ -47,8 +53,8 @@ const Cart = () => {
               </svg>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
+                width="18"
+                height="18"
                 fill="currentColor"
                 class="bi bi-cart-plus-fill"
                 viewBox="0 0 16 16"
