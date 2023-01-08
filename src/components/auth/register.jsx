@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../features/authSlice";
 
 const Register = () => {
@@ -9,6 +9,7 @@ const Register = () => {
     password: "",
   });
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +34,12 @@ const Register = () => {
           placeholder="password"
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
-        <button>Register</button>
+        <button>
+          {auth.registerStatus === "pending" ? "Submitting" : "Register"}
+        </button>
+        {auth.registerStatus === "rejected" ? (
+          <p>{auth.registerError}</p>
+        ) : null}
       </form>
     </>
   );
