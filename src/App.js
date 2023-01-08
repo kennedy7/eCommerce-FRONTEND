@@ -12,6 +12,7 @@ import Cart from "./components/Cart";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import NotFound from "./components/NotFound";
+import Register from "./components/auth/register";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <ToastContainer />
         <NavBar />
         <Routes>
+          <Route path="/register" exact element={<Register />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/" exact element={<Home />} />
