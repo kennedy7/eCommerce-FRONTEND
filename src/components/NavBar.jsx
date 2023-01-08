@@ -50,6 +50,6 @@ const AuthLinks = styled.div`
   }
 `;
 const Logout = styled.div`
-color: white
-cursor: pointer
+  color: white;
+  cursor: pointer;
 `;

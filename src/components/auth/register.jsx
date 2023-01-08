@@ -1,16 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../features/authSlice";
 import { StyledForm } from "./styledForm";
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (auth._id) {
+      navigate("/cart");
+    }
+  }, [auth._id, navigate]);
+
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
   });
-  const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
