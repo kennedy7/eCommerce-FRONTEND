@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const { auth } = useSelector((state) => state.auth);
+
   return (
     <nav className="nav-bar">
       <Link to="/">
