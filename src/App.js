@@ -13,6 +13,7 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import NotFound from "./components/NotFound";
 import Register from "./components/auth/register";
+import Login from "./components/auth/login";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/register" exact element={<Register />} />
-          <Route path="/login" exact element={<Register />} />
+          <Route path="/login" exact element={<Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/" exact element={<Home />} />

@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { url } from "./api";
 import jwtDecode from "jwt-decode";
-import { useSelector } from "react-redux";
 
 const initialState = {
   token: localStorage.getItem("token"),
