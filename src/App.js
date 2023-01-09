@@ -14,6 +14,7 @@ import NavBar from "./components/NavBar";
 import NotFound from "./components/NotFound";
 import Register from "./components/auth/register";
 import Login from "./components/auth/login";
+import CheckOutSuccess from "./components/CheckoutSuccess";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <ToastContainer />
         <NavBar />
         <Routes>
+          <Route path="/checkout-success" exact element={<CheckOutSuccess />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/cart" element={<Cart />} />

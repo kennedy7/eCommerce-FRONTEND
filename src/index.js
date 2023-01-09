@@ -23,7 +23,6 @@ const store = configureStore({
 store.dispatch(productsFetch());
 store.dispatch(loadUser(null));
 store.dispatch(getTotals());
-// store.dispatch(logOutUser());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
