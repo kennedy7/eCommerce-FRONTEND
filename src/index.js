@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import productsReducer, { productsFetch } from "./features/productsSlice";
 import { productsApi } from "./features/productsApi";
 import cartReducer, { getTotals } from "./features/cartSlice";
-import authReducer, { loadUser, logOutUser } from "./features/authSlice";
+import authReducer, { loadUser } from "./features/authSlice";
 
 const store = configureStore({
   reducer: {
