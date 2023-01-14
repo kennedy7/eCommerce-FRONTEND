@@ -15,6 +15,7 @@ import NotFound from "./components/NotFound";
 import Register from "./components/auth/register";
 import Login from "./components/auth/login";
 import CheckOutSuccess from "./components/CheckoutSuccess";
+import Dashboard from "./components/admin/Dashboard";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/checkout-success" exact element={<CheckOutSuccess />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
+          <Route path="/admin" exact element={<Dashboard />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/" exact element={<Home />} />

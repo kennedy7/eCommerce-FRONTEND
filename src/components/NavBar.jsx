@@ -32,14 +32,19 @@ const NavBar = () => {
         </div>
       </Link>
       {auth._id ? (
-        <Logout
-          onClick={() => {
-            dispatch(logOutUser(null));
-            toast.warning("Logged Out!", { position: "bottom-left" });
-          }}
-        >
-          Logout
-        </Logout>
+        <Links>
+          <div>
+            <Link to="admin">Admin</Link>
+          </div>
+          <div
+            onClick={() => {
+              dispatch(logOutUser(null));
+              toast.warning("Logged Out!", { position: "bottom-left" });
+            }}
+          >
+            Logout
+          </div>
+        </Links>
       ) : (
         <AuthLinks>
           <Link to="/login"> Login </Link>
@@ -59,7 +64,15 @@ const AuthLinks = styled.div`
     }
   }
 `;
-const Logout = styled.div`
+const Links = styled.div`
   color: white;
-  cursor: pointer;
+  display: flex;
+
+  div {
+    cursor: pointer;
+
+    &:last-child {
+      margin-left: 2rem;
+    }
+  }
 `;
