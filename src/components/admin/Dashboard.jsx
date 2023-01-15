@@ -1,10 +1,16 @@
+import { NavLink, Outlet } from "react-router-dom";
 import styled from "styled-components";
 const Dashboard = () => {
   return (
     <StyledDashboard>
       <SideNav>
         <h3>QuickLinks</h3>
+        <NavLink to="/admin/summary">Summary</NavLink>
+        <NavLink to="/admin/products">Products</NavLink>
       </SideNav>
+      <Content>
+        <Outlet />
+      </Content>
     </StyledDashboard>
   );
 };

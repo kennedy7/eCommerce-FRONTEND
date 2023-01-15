@@ -34,7 +34,7 @@ const NavBar = () => {
       {auth._id ? (
         <Links>
           <div>
-            <Link to="admin">Admin</Link>
+            <Link to="/admin/summary">Admin</Link>
           </div>
           <div
             onClick={() => {
