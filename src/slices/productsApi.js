@@ -7,6 +7,16 @@ export const productsApi = createApi({
     getAllProducts: build.query({
       query: () => "products",
     }),
+    CreateProduct: build.mutation({
+      // query(body){
+      //     return{
+      //         url: "products",
+      //         method: "POST",
+      //         body
+      //     }
+      // }
+      // }
+    }),
   }),
 });
 export const { useGetAllProductsQuery } = productsApi;

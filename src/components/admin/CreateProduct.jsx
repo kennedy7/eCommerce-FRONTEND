@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { PrimaryButton } from "./CommonStyled";
 
 const CreateProduct = () => {
   const [productImg, setProductImg] = useState("");
@@ -33,10 +34,18 @@ const CreateProduct = () => {
           onChange={handleProductImageUpload}
           required
         />
-        <select onChange={(e) => setBrand(e.target.value)} required></select>
+        <select onChange={(e) => setBrand(e.target.value)} required>
+          <option value="">Select Brand</option>
+          <option value="Iphone">Iphone</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Nokia">Nokia</option>
+          <option value="Tecno">Tecno</option>
+          <option value="Infinix">Infinix</option>
+          <option value="other">Other</option>
+        </select>
         <input
           type="text"
-          placeholder="name"
+          placeholder="Name"
           onChange={(e) => setName(e.target.value)}
           required
         />
@@ -49,10 +58,11 @@ const CreateProduct = () => {
         />
         <input
           type="text"
-          placeholder="price"
+          placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
           required
         />
+        <PrimaryButton type="submit">Submit</PrimaryButton>
       </StyledForm>
       <ImagePreview>
         {productImg ? (
