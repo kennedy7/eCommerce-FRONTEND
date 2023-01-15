@@ -3,6 +3,10 @@ import styled from "styled-components";
 
 const CreateProduct = () => {
   const [productImg, setProductImg] = useState("");
+  const [Name, setName] = useState("");
+  const [Brand, setBrand] = useState("");
+  const [Price, setPrice] = useState("");
+  const [Description, setDesc] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -29,7 +33,26 @@ const CreateProduct = () => {
           onChange={handleProductImageUpload}
           required
         />
-        <input type="text" required placeholder="name" name="" id="" />
+        <select onChange={(e) => setBrand(e.target.value)} required></select>
+        <input
+          type="text"
+          placeholder="name"
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+
+        <input
+          type="text"
+          placeholder="Brief description"
+          onChange={(e) => setDesc(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="price"
+          onChange={(e) => setPrice(e.target.value)}
+          required
+        />
       </StyledForm>
       <ImagePreview>
         {productImg ? (
