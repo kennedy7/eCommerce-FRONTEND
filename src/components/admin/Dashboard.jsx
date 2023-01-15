@@ -5,8 +5,22 @@ const Dashboard = () => {
     <StyledDashboard>
       <SideNav>
         <h3>QuickLinks</h3>
-        <NavLink to="/admin/summary">Summary</NavLink>
-        <NavLink to="/admin/products">Products</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-inactive"
+          }
+          to="/admin/summary"
+        >
+          Summary
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-inactive"
+          }
+          to="/admin/products"
+        >
+          Products
+        </NavLink>
       </SideNav>
       <Content>
         <Outlet />
