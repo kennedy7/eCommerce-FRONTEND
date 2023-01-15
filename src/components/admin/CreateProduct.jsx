@@ -1,7 +1,47 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const CreateProduct = () => {
-  return <h2>Create Product</h2>;
+  const [productImg, setProductImg] = useState("");
+
+  const handleProductImageUpload = (e) => {
+    const file = e.target.files[0];
+    TransformFile(file);
+  };
+
+  const TransformFile = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setProductImg(reader.result);
+      };
+    } else {
+      setProductImg("");
+    }
+  };
+  return (
+    <StyledCreateProduct>
+      <StyledForm>
+        <input
+          type="file"
+          accept="image/"
+          onChange={handleProductImageUpload}
+          required
+        />
+        <input type="text" required placeholder="name" name="" id="" />
+      </StyledForm>
+      <ImagePreview>
+        {productImg ? (
+          <>
+            <img src={productImg} alt="Product-image" />
+          </>
+        ) : (
+          <p>Image Preview will appear here!</p>
+        )}{" "}
+      </ImagePreview>
+    </StyledCreateProduct>
+  );
 };
 
 export default CreateProduct;
