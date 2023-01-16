@@ -1,12 +1,14 @@
-import { useDispatch } from "react-redux";
-import { useGetAllProductsQuery } from "../slices/productsApi";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { addToCart } from "../slices/cartSlice";
-import { useNavigate } from "react-router-dom";
+// import { useGetAllProductsQuery } from "../slices/productsApi";
 
 const Home = () => {
-  const { data, error, isLoading } = useGetAllProductsQuery();
+  const { items: data, status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // const { data, error, isLoading } = useGetAllProductsQuery();
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
@@ -15,29 +17,30 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p> Oops... An error occured </p>
-      ) : (
+      {status === "success" ? (
         <>
-          <h2> New arrivals </h2>
+          <h2>New Arrivals</h2>
           <div className="products">
-            {data?.map((product) => (
-              <div key={product.id} className="product">
-                <h3> {product.name} </h3>
-                <img src={product.image} alt={product.name} />
-                <div className="details">
-                  <span> {product.desc} </span>
-                  <span className="price">${product.price}</span>
+            {data &&
+              data?.map((product) => (
+                <div key={product._id} className="product">
+                  <h3>{product.name}</h3>
+                  <img src={product.image?.url} alt={product.name} />
+                  <div className="details">
+                    <span>{product.desc}</span>
+                    <span className="price">${product.price}</span>
+                  </div>
+                  <button onClick={() => handleAddToCart(product)}>
+                    Add To Cart
+                  </button>
                 </div>
-                <button onClick={() => handleAddToCart(product)}>
-                  Add To Cart{" "}
-                </button>
-              </div>
-            ))}
+              ))}
           </div>
         </>
+      ) : status === "pending" ? (
+        <p>Loading...</p>
+      ) : (
+        <p>Oops...Unexpected error occured...</p>
       )}
     </div>
   );

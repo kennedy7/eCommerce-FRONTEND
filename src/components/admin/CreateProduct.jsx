@@ -1,13 +1,17 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { productCreate } from "../../slices/productsSlice";
 import { PrimaryButton } from "./CommonStyled";
 
 const CreateProduct = () => {
+  const dispatch = useDispatch();
+
   const [productImg, setProductImg] = useState("");
-  const [Name, setName] = useState("");
-  const [Brand, setBrand] = useState("");
-  const [Price, setPrice] = useState("");
-  const [Description, setDesc] = useState("");
+  const [name, setName] = useState("");
+  const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState("");
+  const [desc, setDesc] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -25,9 +29,23 @@ const CreateProduct = () => {
       setProductImg("");
     }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      productCreate({
+        name,
+        brand,
+        price,
+        desc,
+        image: productImg,
+      })
+    );
+  };
+
   return (
     <StyledCreateProduct>
-      <StyledForm>
+      <StyledForm onSubmit={handleSubmit}>
         <input
           type="file"
           accept="image/"
@@ -67,7 +85,7 @@ const CreateProduct = () => {
       <ImagePreview>
         {productImg ? (
           <>
-            <img src={productImg} alt="Product-image" />
+            <img src={productImg} alt="ProductImage" />
           </>
         ) : (
           <p>Image Preview will appear here!</p>
