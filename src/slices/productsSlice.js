@@ -37,7 +37,7 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {},
-  extractReducers: {
+  extraReducers: {
     [productsFetch.pending]: (state, action) => {
       state.status = "pending";
     },
