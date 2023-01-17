@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
 import styled from "styled-components";
 const Dashboard = () => {
-  const user = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
 
-  if (!user.isAdmin) return <p>Access Denied</p>;
+  if (!auth.isAdmin) return <p>Access Denied</p>;
   return (
     <StyledDashboard>
       <SideNav>
