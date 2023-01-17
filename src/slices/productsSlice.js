@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { url } from "./api";
+import { setHeaders, url } from "./api";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const initialState = {
   items: [],
   status: null,
@@ -23,8 +24,14 @@ export const productsFetch = createAsyncThunk(
 export const productCreate = createAsyncThunk(
   "products/productCreate",
   async (values) => {
+    // const navigate = useNavigate();
     try {
-      const response = await axios.post(`${url}/products`, values);
+      const response = await axios.post(
+        `${url}/products`,
+        values,
+        setHeaders()
+      );
+      //   navigate("/cart");
       return response?.data;
     } catch (error) {
       console.log(error);
@@ -54,6 +61,7 @@ const productsSlice = createSlice({
     [productCreate.fulfilled]: (state, action) => {
       state.CreateStatus = "success";
       state.items.push(action.payload);
+      toast.success("Product Created");
     },
     [productCreate.rejected]: (state, action) => {
       state.CreateStatus = "rejected";
