@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FaUsers, FaChartBar, FaClipBoard } from "react-icons";
+import { FaUsers, FaChartBar, FaClipboard } from "react-icons/fa";
 import Widget from "./summary-components/widgets";
 const Summary = () => {
   const data = [
@@ -13,7 +13,7 @@ const Summary = () => {
       percentage: 30,
     },
     {
-      icon: <FaClipBoard />,
+      icon: <FaClipboard />,
       digits: 70,
       isMoney: false,
       title: "Others",
