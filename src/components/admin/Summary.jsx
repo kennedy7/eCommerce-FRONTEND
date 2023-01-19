@@ -31,7 +31,12 @@ const Summary = () => {
     },
   ];
 
-  return <StyledSummary>Summary</StyledSummary>;
+  return (
+    <StyledSummary>
+      <MainStats></MainStats>
+      <SideStats></SideStats>
+    </StyledSummary>
+  );
 };
 
 export default Summary;
@@ -49,4 +54,28 @@ const Title = styled.div`
     font-size: 14px;
     color: rgba(234, 234, 255, 0.68);
   }
+`;
+const Overview = styled.div`
+  background: rgb(48, 51, 78);
+  color: rgba(234, 234, 255, 0.87);
+  width: 100%;
+  padding: 1.5rem;
+  height: 170px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: spce-between;
+`;
+const WidgetWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const SideStats = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  width: 100%;
 `;
