@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FaUsers, FaChartBar, FaClipBoard } from "react-icons";
+import Widget from "./summary-components/widgets";
 const Summary = () => {
   const data = [
     {
@@ -33,7 +34,19 @@ const Summary = () => {
 
   return (
     <StyledSummary>
-      <MainStats></MainStats>
+      <MainStats>
+        <Overview>
+          <Title>
+            <h2>Overview</h2>
+            <p>How your shop is performing compared to the previous month</p>
+          </Title>
+          <WidgetWrapper>
+            {data?.map((data, index) => (
+              <Widget key={index} data={data} />
+            ))}
+          </WidgetWrapper>
+        </Overview>
+      </MainStats>
       <SideStats></SideStats>
     </StyledSummary>
   );
