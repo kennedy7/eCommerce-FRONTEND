@@ -18,7 +18,7 @@ const Summary = () => {
       title: "Others",
       color: "rgb(38, 198, 249)",
       bgColor: "rgb(38, 198, 249, 0.12)",
-      percentage: 30,
+      percentage: 20,
     },
     {
       icon: <FaChartBar />,
@@ -27,11 +27,11 @@ const Summary = () => {
       title: "Earnings",
       color: "rgb(253, 181, 40)",
       bgColor: "rgba(253, 181, 40, 0.12)",
-      percentage: 30,
+      percentage: 60,
     },
   ];
 
-  return <h2>Summary</h2>;
+  return <StyledSummary>Summary</StyledSummary>;
 };
 
 export default Summary;
