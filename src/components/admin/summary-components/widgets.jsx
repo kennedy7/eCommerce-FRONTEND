@@ -3,8 +3,17 @@ import styled from "styled-components";
 const Widget = ({ data }) => {
   return (
     <StyleWidget>
-      <Icon color={data.color} bgcolor={data.bgcolor}></Icon>
-      <Text></Text>
+      <Icon color={data.color} bgcolor={data.bgcolor}>
+        {data.icon}
+      </Icon>
+      <Text>
+        <h3>
+          {data.isMoney
+            ? "$" + data.digits?.toLocaleString()
+            : data.digits?.toLocaleString()}
+        </h3>
+        <p>{data.title}</p>
+      </Text>
     </StyleWidget>
   );
 };
