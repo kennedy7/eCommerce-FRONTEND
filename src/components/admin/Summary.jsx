@@ -1,7 +1,18 @@
 import styled from "styled-components";
 import { FaUsers, FaChartBar, FaClipboard } from "react-icons/fa";
 import Widget from "./summary-components/widgets";
+import { useEffect, useState } from "react";
 const Summary = () => {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
   const data = [
     {
       icon: <FaUsers />,
