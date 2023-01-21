@@ -6,12 +6,14 @@ import axios from "axios";
 import { setHeaders, url } from "../../slices/api";
 const Summary = () => {
   const [users, setUsers] = useState([]);
+  const [usersPerc, setUsersPerc] = useState(0);
+  console.log(usersPerc);
 
   function compare(a, b) {
-    if (a._id < b._id) {
+    if (a._id < b._id && (a._id !== 12 || b._id !== 12)) {
       return 1;
     }
-    if (a._id > b._id) {
+    if (a._id > b._id && (b._id !== 12 || a._id !== 12)) {
       return -1;
     }
     return 0;
@@ -21,7 +23,11 @@ const Summary = () => {
       try {
         const res = await axios.get(`${url}/users/stats`, setHeaders());
         res.data.sort(compare);
-        console.log("stats:", res.data);
+        setUsers(res.data);
+        setUsersPerc(
+          //this month's users minus last month's users divided by last month's
+          ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
+        );
       } catch (err) {
         console.log(err);
       }
@@ -36,7 +42,7 @@ const Summary = () => {
       title: "Users",
       color: "rgb(102, 108, 255)",
       bgColor: "rgba(102, 108, 255, 0.12)",
-      percentage: 30,
+      percentage: usersPerc,
     },
     {
       icon: <FaClipboard />,
