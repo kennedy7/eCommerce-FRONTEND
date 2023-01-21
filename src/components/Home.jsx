@@ -40,7 +40,7 @@ const Home = () => {
       ) : status === "pending" ? (
         <p>Loading...</p>
       ) : (
-        <p>Oops...Unexpected error occured...</p>
+        <p>Oops... Unexpected error occured...</p>
       )}
     </div>
   );

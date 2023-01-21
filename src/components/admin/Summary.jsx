@@ -10,10 +10,10 @@ const Summary = () => {
   console.log(usersPerc);
 
   function compare(a, b) {
-    if (a._id < b._id && (a._id !== 12 || b._id !== 12)) {
+    if (a._id < b._id) {
       return 1;
     }
-    if (a._id > b._id && (b._id !== 12 || a._id !== 12)) {
+    if (a._id > b._id) {
       return -1;
     }
     return 0;
@@ -37,7 +37,7 @@ const Summary = () => {
   const data = [
     {
       icon: <FaUsers />,
-      digits: 50,
+      digits: users[1]?.total,
       isMoney: false,
       title: "Users",
       color: "rgb(102, 108, 255)",
