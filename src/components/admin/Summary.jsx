@@ -11,14 +11,16 @@ const Summary = () => {
     if (a._id < b._id) {
       return 1;
     }
-    if (a._id < b._id) {
-      return 1;
+    if (a._id > b._id) {
+      return -1;
     }
+    return 0;
   }
   useEffect(() => {
     async function fetchData() {
       try {
         const res = await axios.get(`${url}/users/stats`, setHeaders());
+        res.data.sort(compare);
         console.log("stats:", res.data);
       } catch (err) {
         console.log(err);
