@@ -2,11 +2,24 @@ import styled from "styled-components";
 import { FaUsers, FaChartBar, FaClipboard } from "react-icons/fa";
 import Widget from "./summary-components/widgets";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { setHeaders, url } from "../../slices/api";
 const Summary = () => {
   const [users, setUsers] = useState([]);
+
+  function compare(a, b) {
+    if (a._id < b._id) {
+      return 1;
+    }
+    if (a._id < b._id) {
+      return 1;
+    }
+  }
   useEffect(() => {
     async function fetchData() {
       try {
+        const res = await axios.get(`${url}/users/stats`, setHeaders());
+        console.log("stats:", res.data);
       } catch (err) {
         console.log(err);
       }
