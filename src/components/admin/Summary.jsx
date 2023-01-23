@@ -11,6 +11,7 @@ const Summary = () => {
   const [ordersPerc, setOrdersPerc] = useState(0);
 
   console.log(usersPerc);
+  console.log(ordersPerc);
 
   function compare(a, b) {
     if (a._id < b._id) {
@@ -19,6 +20,7 @@ const Summary = () => {
     if (a._id > b._id) {
       return -1;
     }
+
     return 0;
   }
 
