@@ -14,9 +14,6 @@ const Summary = () => {
   console.log(ordersPerc);
 
   function compare(a, b) {
-    // if ((a._id || b._id) >= 12) {
-    //   return 1;
-    // }
     if (a._id < b._id) {
       return 1;
     }
@@ -37,7 +34,7 @@ const Summary = () => {
         if (res.data._id >= 12) {
           setUsers(res.data);
           setUsersPerc(
-            //this month's users minus last month's users divided by last month's
+            //this month's users minus last month's users divided by last month's (inverse of the real case because Dec _id being greater than jan)
             ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
           );
         }
