@@ -34,6 +34,13 @@ const Summary = () => {
       try {
         const res = await axios.get(`${url}/users/stats`, setHeaders());
         res.data.sort(compare);
+        if (res.data._id >= 12) {
+          setUsers(res.data);
+          setUsersPerc(
+            //this month's users minus last month's users divided by last month's
+            ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
+          );
+        }
         setUsers(res.data);
         setUsersPerc(
           //this month's users minus last month's users divided by last month's
