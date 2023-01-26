@@ -31,7 +31,7 @@ const Home = () => {
                     <span className="price">${product.price}</span>
                   </div>
                   <button onClick={() => handleAddToCart(product)}>
-                    Add To Cart
+                    Add to Cart
                   </button>
                 </div>
               ))}
