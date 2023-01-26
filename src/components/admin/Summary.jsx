@@ -57,7 +57,7 @@ const Summary = () => {
       try {
         const res = await axios.get(`${url}/orders/stats`, setHeaders());
         res.data.sort(compare);
-        setOrders(res.data);
+        setOrders(res.data[0].total);
         setOrdersPerc(
           //this month's users minus last month's users divided by last month's
           ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
