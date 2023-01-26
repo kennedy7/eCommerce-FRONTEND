@@ -33,7 +33,7 @@ const Summary = () => {
         res.data.sort(compare);
 
         if (res.data[0]._id >= 12) {
-          setUsers(res.data);
+          setUsers(res.data[1].total);
           setUsersPerc(
             //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec _id being greater than jan)
             ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
@@ -71,7 +71,7 @@ const Summary = () => {
   const data = [
     {
       icon: <FaUsers />,
-      digits: users[0]?.total,
+      digits: users,
       isMoney: false,
       title: "Users",
       color: "rgb(102, 108, 255)",
