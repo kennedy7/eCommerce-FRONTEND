@@ -39,7 +39,7 @@ const Summary = () => {
             ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
           );
         } else {
-          setUsers(res.data);
+          setUsers(res.data[0].total);
           setUsersPerc(
             //this month's users minus last month's users divided by last month's
             ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
@@ -80,7 +80,7 @@ const Summary = () => {
     },
     {
       icon: <FaClipboard />,
-      digits: orders[0]?.total,
+      digits: orders,
       isMoney: false,
       title: "Orders",
       color: "rgb(38, 198, 249)",
