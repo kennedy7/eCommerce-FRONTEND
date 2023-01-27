@@ -4,6 +4,7 @@ import Widget from "./summary-components/widgets";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { setHeaders, url } from "../../slices/api";
+
 const Summary = () => {
   const [users, setUsers] = useState([]);
   const [usersPerc, setUsersPerc] = useState(0);
@@ -20,9 +21,6 @@ const Summary = () => {
     if (a._id > b._id) {
       return -1;
     }
-    // if ((a._id || b._id) >= 12) {
-    //   return 1;
-    // }
     return 0;
   }
 
@@ -33,13 +31,13 @@ const Summary = () => {
         res.data.sort(compare);
 
         if (res.data[0]._id >= 12) {
-          setUsers(res.data[1].total);
+          setUsers(res.data[1]?.total);
           setUsersPerc(
             //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec _id being greater than jan)
             ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
           );
         } else {
-          setUsers(res.data[0].total);
+          setUsers(res.data[0]?.total);
           setUsersPerc(
             //this month's users minus last month's users divided by last month's
             ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
@@ -57,7 +55,14 @@ const Summary = () => {
       try {
         const res = await axios.get(`${url}/orders/stats`, setHeaders());
         res.data.sort(compare);
-        setOrders(res.data[0].total);
+        if (res.data[0]._id >= 12) {
+          setOrders(res.data[1]?.total);
+          setOrdersPerc(
+            //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec _id being greater than jan)
+            ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
+          );
+        }
+        setOrders(res.data[0]?.total);
         setOrdersPerc(
           //this month's users minus last month's users divided by last month's
           ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
