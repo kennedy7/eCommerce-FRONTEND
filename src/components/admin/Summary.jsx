@@ -7,12 +7,14 @@ import { setHeaders, url } from "../../slices/api";
 
 const Summary = () => {
   const [users, setUsers] = useState([]);
-  const [usersPerc, setUsersPerc] = useState(0);
+  const [usersPercentage, setUsersPercentage] = useState(0);
   const [orders, setOrders] = useState([]);
-  const [ordersPerc, setOrdersPerc] = useState(0);
+  const [ordersPercentage, setOrdersPercentage] = useState(0);
+  const [income, setIncome] = useState([]);
+  const [incomePercentage, setIncomePercentage] = useState(0);
 
-  console.log(usersPerc);
-  console.log(ordersPerc);
+  console.log(usersPercentage);
+  console.log(ordersPercentage);
 
   function compare(a, b) {
     if (a._id < b._id) {
@@ -24,6 +26,7 @@ const Summary = () => {
     return 0;
   }
 
+  //Get Users stats
   useEffect(() => {
     async function fetchData() {
       try {
@@ -32,13 +35,13 @@ const Summary = () => {
 
         if (res.data[0]._id >= 12) {
           setUsers(res.data[1]?.total);
-          setUsersPerc(
+          setUsersPercentage(
             //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec _id being greater than jan)
             ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
           );
         } else {
           setUsers(res.data[0]?.total);
-          setUsersPerc(
+          setUsersPercentage(
             //this month's users minus last month's users divided by last month's
             ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
           );
@@ -50,6 +53,7 @@ const Summary = () => {
     fetchData();
   }, []);
 
+  //Get Orders stats
   useEffect(() => {
     async function fetchData() {
       try {
@@ -57,13 +61,13 @@ const Summary = () => {
         res.data.sort(compare);
         if (res.data[0]._id >= 12) {
           setOrders(res.data[1]?.total);
-          setOrdersPerc(
+          setOrdersPercentage(
             //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec._id being greater than jan._id)
             ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
           );
         } else {
           setOrders(res.data);
-          setOrdersPerc(
+          setOrdersPercentage(
             //this month's users minus last month's users divided by last month's
             ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
           );
@@ -74,6 +78,33 @@ const Summary = () => {
     }
     fetchData();
   }, []);
+
+  //Get Income stats
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(`${url}/orders/income/stats`, setHeaders());
+        res.data.sort(compare);
+        if (res.data[0]._id >= 12) {
+          setIncome(res.data[1]?.total);
+          setIncomePercentage(
+            //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec._id being greater than jan._id)
+            ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
+          );
+        } else {
+          setOrders(res.data);
+          setOrdersPercentage(
+            //this month's users minus last month's users divided by last month's
+            ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
+          );
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
+
   const data = [
     {
       icon: <FaUsers />,
@@ -82,7 +113,7 @@ const Summary = () => {
       title: "Users",
       color: "rgb(102, 108, 255)",
       bgColor: "rgba(102, 108, 255, 0.12)",
-      percentage: usersPerc,
+      percentage: usersPercentage,
     },
     {
       icon: <FaClipboard />,
@@ -91,16 +122,16 @@ const Summary = () => {
       title: "Orders",
       color: "rgb(38, 198, 249)",
       bgColor: "rgba(38, 198, 249, 0.12)",
-      percentage: ordersPerc,
+      percentage: ordersPercentage,
     },
     {
       icon: <FaChartBar />,
-      digits: 1000,
+      digits: income,
       isMoney: true,
       title: "Earnings",
       color: "rgb(253, 181, 40)",
       bgColor: "rgba(253, 181, 40, 0.12)",
-      percentage: 60,
+      percentage: incomePercentage,
     },
   ];
 
