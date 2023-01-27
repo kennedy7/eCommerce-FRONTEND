@@ -58,15 +58,16 @@ const Summary = () => {
         if (res.data[0]._id >= 12) {
           setOrders(res.data[1]?.total);
           setOrdersPerc(
-            //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec _id being greater than jan)
+            //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec._id being greater than jan._id)
             ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
           );
+        } else {
+          setOrders(res.data);
+          setOrdersPerc(
+            //this month's users minus last month's users divided by last month's
+            ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
+          );
         }
-        setOrders(res.data[0]?.total);
-        setOrdersPerc(
-          //this month's users minus last month's users divided by last month's
-          ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
-        );
       } catch (err) {
         console.log(err);
       }
