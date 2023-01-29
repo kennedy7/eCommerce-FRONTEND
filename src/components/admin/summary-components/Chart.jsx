@@ -1,9 +1,21 @@
 import styled from "styled-components";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+
 const Chart = () => {
   return <StyledChart> Chart </StyledChart>;
 };
 
 export default Chart;
+
 const StyledChart = styled.div`
   width: 100%;
   height: 300px;
@@ -14,4 +26,7 @@ const StyledChart = styled.div`
   h3 {
     margin-bottom: 1rem;
   }
+`;
+const Loader = styled.p`
+  margin-top: 2rem;
 `;

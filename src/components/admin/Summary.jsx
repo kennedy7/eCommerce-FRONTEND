@@ -4,6 +4,7 @@ import Widget from "./summary-components/widgets";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { setHeaders, url } from "../../slices/api";
+import Chart from "./summary-components/Chart";
 
 const Summary = () => {
   const [users, setUsers] = useState([]);
@@ -149,6 +150,7 @@ const Summary = () => {
             ))}
           </WidgetWrapper>
         </Overview>
+        <Chart />
       </MainStats>
       <SideStats></SideStats>
     </StyledSummary>
