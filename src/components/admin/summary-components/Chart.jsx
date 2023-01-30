@@ -29,14 +29,19 @@ const Chart = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get(
-          `${url}/orders/income/week-sales`,
-          setHeaders()
-        );
+        const res = await axios.get(`${url}/orders/week-sales`, setHeaders());
         res.data.sort(compare);
 
-        setSales(res.data);
-        // const updatedData = data?.map();
+        const updatedData = res.data?.map((item) => {
+          const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+          return {
+            day: DAYS[item._id - 1],
+            //To give the actual amount sent by stripe in dollar$
+            amount: item.total / 100,
+          };
+        });
+        console.log(updatedData);
+        setSales(updatedData);
       } catch (err) {
         console.log(err);
       }
@@ -47,11 +52,11 @@ const Chart = () => {
   const data = [
     {
       day: "Mon",
-      amount: sales[0].amount,
+      amount: 3000,
     },
     {
       day: "Tue",
-      amount: sales[6].amount,
+      amount: 4000,
     },
   ];
 
@@ -62,7 +67,7 @@ const Chart = () => {
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={sales}
           margin={{
             top: 5,
             right: 30,

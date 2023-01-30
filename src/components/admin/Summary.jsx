@@ -14,8 +14,8 @@ const Summary = () => {
   const [income, setIncome] = useState([]);
   const [incomePercentage, setIncomePercentage] = useState(0);
 
-  console.log(usersPercentage);
-  console.log(ordersPercentage);
+  // console.log(usersPercentage);
+  // console.log(ordersPercentage);
 
   function compare(a, b) {
     if (a._id < b._id) {
