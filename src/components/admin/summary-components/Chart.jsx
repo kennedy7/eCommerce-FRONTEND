@@ -29,30 +29,29 @@ const Chart = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get(`${url}/orders/income/stats`, setHeaders());
+        const res = await axios.get(
+          `${url}/orders/income/week-sales`,
+          setHeaders()
+        );
         res.data.sort(compare);
 
         setSales(res.data);
-        setOrdersPercentage(
-          //this month's users minus last month's users divided by last month's
-          ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
-        );
+        // const updatedData = data?.map();
       } catch (err) {
         console.log(err);
       }
-
-      fetchData();
     }
+    fetchData();
   }, []);
 
   const data = [
     {
       day: "Mon",
-      amount: 4000,
+      amount: sales[0].amount,
     },
     {
       day: "Tue",
-      amount: 3000,
+      amount: sales[6].amount,
     },
   ];
 

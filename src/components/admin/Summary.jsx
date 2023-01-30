@@ -127,7 +127,7 @@ const Summary = () => {
     },
     {
       icon: <FaChartBar />,
-      digits: income,
+      digits: income ? income / 100 : "",
       isMoney: true,
       title: "Earnings",
       color: "rgb(253, 181, 40)",
@@ -145,11 +145,13 @@ const Summary = () => {
             <p>How your shop is performing compared to the previous month</p>
           </Title>
           <WidgetWrapper>
+            {/* Widget data */}
             {data?.map((data, index) => (
               <Widget key={index} data={data} />
             ))}
           </WidgetWrapper>
         </Overview>
+        {/* last 7 days chart */}
         <Chart />
       </MainStats>
       <SideStats></SideStats>
