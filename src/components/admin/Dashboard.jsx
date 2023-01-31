@@ -8,6 +8,8 @@ const Dashboard = () => {
   return (
     <StyledDashboard>
       <SideNav>
+        <h4>Welcome, {auth.name} (Admin)</h4>
+        <br></br>
         <h3>QuickLinks</h3>
         <NavLink
           className={({ isActive }) =>

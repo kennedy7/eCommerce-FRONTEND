@@ -176,7 +176,7 @@ const Title = styled.div`
   }
 `;
 const Overview = styled.div`
-  background: rgb(48, 51, 78);
+  background: black;
   color: rgba(234, 234, 255, 0.87);
   width: 100%;
   padding: 1.5rem;
