@@ -14,31 +14,30 @@ const Transactions = () => {
         const res = await axios.get(`${url}/orders/?new=true`, setHeaders());
 
         setOrders(res.data);
-        setLoading(false);
       } catch (err) {
         console.log(err);
-        setLoading(false);
       }
+      setLoading(false);
     }
     fetchData();
   }, []);
 
   return (
-    <>
+    <StyledTransactions>
       {isloading ? (
-        <Loader>Transactions Loading...</Loader>
+        <p>Transactions Loading...</p>
       ) : (
-        <StyledChart>
-          <h3>Last 7 Days Earnings($)</h3>
-        </StyledChart>
+        <>
+          <h3>Latest Transactions</h3>
+        </>
       )}
-    </>
+    </StyledTransactions>
   );
 };
 
 export default Transactions;
 
-const StyledChart = styled.div`
+const StyledTransactions = styled.div`
   width: 100%;
   height: 300px;
   margin-top: 2rem;

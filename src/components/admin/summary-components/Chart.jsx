@@ -43,7 +43,6 @@ const Chart = () => {
         });
         console.log(updatedData);
         setSales(updatedData);
-        setLoading(false);
       } catch (err) {
         console.log(err);
       }
