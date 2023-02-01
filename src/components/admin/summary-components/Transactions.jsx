@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { setHeaders, url } from "../../../slices/api";
 import axios from "axios";
-// import moment from "moment"
+import moment from "moment";
 
 const Transactions = () => {
   const [orders, setOrders] = useState([]);
@@ -30,6 +30,13 @@ const Transactions = () => {
       ) : (
         <>
           <h3>Latest Transactions</h3>
+          {orders?.map((order, index) => (
+            <Transaction key={index}>
+              <p>{order.shipping.name}</p>
+              <p>${(order.total / 100).toLocaleString()}</p>
+              <p>{moment(order.createdAt).fromNow()}</p>
+            </Transaction>
+          ))}
         </>
       )}
     </StyledTransactions>
