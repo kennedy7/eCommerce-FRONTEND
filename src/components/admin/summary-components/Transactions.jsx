@@ -38,16 +38,22 @@ const Transactions = () => {
 export default Transactions;
 
 const StyledTransactions = styled.div`
-  width: 100%;
-  height: 300px;
-  margin-top: 2rem;
+  background: rgb(48, 51, 78);
+  color: rgba(234, 234, 255, 0.87);
   padding: 1rem;
-  border: 2px solid rgba(48, 51, 78, 0.2);
   border-radius: 5px;
-  h3 {
-    margin-bottom: 1rem;
-  }
 `;
-const Loader = styled.p`
-  margin-top: 2rem;
+const Transaction = styled.p`
+  display: flex;
+  font-size: 14px;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 3px;
+  background: rgba(38, 198, 249, 0.12);
+  p {
+    flex: 1;
+  }
+  &:nth-child {
+    background: rgba(102, 108, 255, 0.12);
+  }
 `;
