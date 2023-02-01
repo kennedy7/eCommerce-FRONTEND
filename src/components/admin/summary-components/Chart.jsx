@@ -46,8 +46,8 @@ const Chart = () => {
         setLoading(false);
       } catch (err) {
         console.log(err);
-        setLoading(false);
       }
+      setLoading(false);
     }
     fetchData();
   }, []);
