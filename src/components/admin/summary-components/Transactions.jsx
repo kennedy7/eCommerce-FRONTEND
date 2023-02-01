@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { setHeaders, url } from "../../../slices/api";
 import axios from "axios";
+// import moment from "moment"
 
 const Transactions = () => {
   const [orders, setOrders] = useState([]);
@@ -38,7 +39,7 @@ const Transactions = () => {
 export default Transactions;
 
 const StyledTransactions = styled.div`
-  background: rgb(48, 51, 78);
+  background: darkslategray;
   color: rgba(234, 234, 255, 0.87);
   padding: 1rem;
   border-radius: 5px;

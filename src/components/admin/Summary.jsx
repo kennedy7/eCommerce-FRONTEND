@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { setHeaders, url } from "../../slices/api";
 import Chart from "./summary-components/Chart";
+import Transactions from "./summary-components/Transactions";
 
 const Summary = () => {
   const [users, setUsers] = useState([]);
@@ -154,7 +155,9 @@ const Summary = () => {
         {/* last 7 days chart */}
         <Chart />
       </MainStats>
-      <SideStats></SideStats>
+      <SideStats>
+        <Transactions />
+      </SideStats>
     </StyledSummary>
   );
 };
@@ -163,7 +166,7 @@ export default Summary;
 
 const StyledSummary = styled.div`
   width: 100%;
-  display: 100%;
+  display: flex;
 `;
 const MainStats = styled.div`
   flex: 2;
@@ -176,7 +179,7 @@ const Title = styled.div`
   }
 `;
 const Overview = styled.div`
-  background: black;
+  background: darkslategray;
   color: rgba(234, 234, 255, 0.87);
   width: 100%;
   padding: 1.5rem;
