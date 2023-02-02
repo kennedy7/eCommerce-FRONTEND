@@ -4,6 +4,10 @@ const AllTimeData = () => {
   return (
     <Main>
       <h3> All Time </h3>
+      <Info>
+        <Title>Users</Title>
+        <Data>200</Data>
+      </Info>
     </Main>
   );
 };
