@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 const AllTimeData = () => {
-  return <></>;
+  return (
+    <Main>
+      <h3> All Time </h3>
+    </Main>
+  );
 };
 
 export default AllTimeData;
