@@ -36,19 +36,19 @@ const Summary = () => {
         const res = await axios.get(`${url}/users/stats`, setHeaders());
         res.data.sort(compare);
         console.log(res.data);
-        if (res.data[0]._id >= 12) {
-          setUsers(res.data[1]?.total);
-          setUsersPercentage(
-            //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec _id being greater than jan)
-            ((res.data[1].total - res.data[2].total) / res.data[2].total) * 100
-          );
-        } else {
-          setUsers(res.data[0]?.total);
-          setUsersPercentage(
-            //this month's users minus last month's users divided by last month's
-            ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
-          );
-        }
+        // if (res.data[0]._id >= 12) {
+        //   setUsers(res.data[1]?.total);
+        //   setUsersPercentage(
+        //     //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec _id being greater than jan)
+        //     ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
+        //   );
+        // } else {
+        setUsers(res.data[0]?.total);
+        setUsersPercentage(
+          //this month's users minus last month's users divided by last month's
+          ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
+        );
+        // }
       } catch (err) {
         console.log(err);
       }
@@ -62,19 +62,19 @@ const Summary = () => {
       try {
         const res = await axios.get(`${url}/orders/stats`, setHeaders());
         res.data.sort(compare);
-        if (res.data[0]._id >= 12) {
-          setOrders(res.data[1]?.total);
-          setOrdersPercentage(
-            //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec._id being greater than jan._id)
-            ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
-          );
-        } else {
-          setOrders(res.data[0]?.total);
-          setOrdersPercentage(
-            //this month's users minus last month's users divided by last month's
-            ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
-          );
-        }
+        // if (res.data[0]._id >= 12) {
+        //   setOrders(res.data[1]?.total);
+        //   setOrdersPercentage(
+        //     //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec._id being greater than jan._id)
+        //     ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
+        //   );
+        // } else {
+        setOrders(res.data[0]?.total);
+        setOrdersPercentage(
+          //this month's users minus last month's users divided by last month's
+          ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
+        );
+        // }
       } catch (err) {
         console.log(err);
       }
@@ -88,19 +88,20 @@ const Summary = () => {
       try {
         const res = await axios.get(`${url}/orders/income/stats`, setHeaders());
         res.data.sort(compare);
-        if (res.data[0]._id >= 12) {
-          setIncome(res.data[1]?.total);
-          setIncomePercentage(
-            //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec._id being greater than jan._id)
-            ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
-          );
-        } else {
-          setOrders(res.data);
-          setOrdersPercentage(
-            //this month's users minus last month's users divided by last month's
-            ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
-          );
-        }
+        console.log(res.data);
+        // if (res.data[0]._id >= 12) {
+        //   setIncome(res.data[1]?.total);
+        //   setIncomePercentage(
+        //     //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec._id being greater than jan._id)
+        //     ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
+        //   );
+        // } else {
+        setIncome(res.data[0]?.total);
+        setIncomePercentage(
+          //this month's users minus last month's users divided by last month's
+          ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
+        );
+        // }
       } catch (err) {
         console.log(err);
       }
