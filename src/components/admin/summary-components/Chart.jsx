@@ -41,7 +41,7 @@ const Chart = () => {
             amount: item.total / 100,
           };
         });
-        console.log(updatedData);
+        // console.log(updatedData);
         setSales(updatedData);
       } catch (err) {
         console.log(err);
