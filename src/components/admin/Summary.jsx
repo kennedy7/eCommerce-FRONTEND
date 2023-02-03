@@ -41,7 +41,6 @@ const Summary = () => {
           //this month's users minus last month's users divided by last month's
           ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
         );
-        // }
       } catch (err) {
         console.log(err);
       }
@@ -61,7 +60,6 @@ const Summary = () => {
           //this month's users minus last month's users divided by last month's
           ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
         );
-        // }
       } catch (err) {
         console.log(err);
       }
@@ -81,7 +79,6 @@ const Summary = () => {
           //this month's users minus last month's users divided by last month's
           ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
         );
-        // }
       } catch (err) {
         console.log(err);
       }
