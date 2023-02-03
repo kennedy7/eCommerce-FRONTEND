@@ -35,15 +35,8 @@ const Summary = () => {
       try {
         const res = await axios.get(`${url}/users/stats`, setHeaders());
         res.data.sort(compare);
-        console.log(res.data);
-        // if (res.data[0]._id >= 12) {
-        //   setUsers(res.data[1]?.total);
-        //   setUsersPercentage(
-        //     //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec _id being greater than jan)
-        //     ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
-        //   );
-        // } else {
-        setUsers(res.data[0]?.total);
+        // console.log(res.data);
+        setUsers(res.data);
         setUsersPercentage(
           //this month's users minus last month's users divided by last month's
           ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
@@ -62,14 +55,8 @@ const Summary = () => {
       try {
         const res = await axios.get(`${url}/orders/stats`, setHeaders());
         res.data.sort(compare);
-        // if (res.data[0]._id >= 12) {
-        //   setOrders(res.data[1]?.total);
-        //   setOrdersPercentage(
-        //     //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec._id being greater than jan._id)
-        //     ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
-        //   );
-        // } else {
-        setOrders(res.data[0]?.total);
+        // console.log(res.data)
+        setOrders(res.data);
         setOrdersPercentage(
           //this month's users minus last month's users divided by last month's
           ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
@@ -88,15 +75,8 @@ const Summary = () => {
       try {
         const res = await axios.get(`${url}/orders/income/stats`, setHeaders());
         res.data.sort(compare);
-        console.log(res.data);
-        // if (res.data[0]._id >= 12) {
-        //   setIncome(res.data[1]?.total);
-        //   setIncomePercentage(
-        //     //this month's users minus last month's users divided by last month's (inverse of the real logic because of Dec._id being greater than jan._id)
-        //     ((res.data[1].total - res.data[0].total) / res.data[0].total) * 100
-        //   );
-        // } else {
-        setIncome(res.data[0]?.total);
+        // console.log(res.data);
+        setIncome(res.data);
         setIncomePercentage(
           //this month's users minus last month's users divided by last month's
           ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
@@ -112,7 +92,7 @@ const Summary = () => {
   const data = [
     {
       icon: <FaUsers />,
-      digits: users,
+      digits: users[0]?.total,
       isMoney: false,
       title: "Users",
       color: "rgb(102, 108, 255)",
@@ -121,7 +101,7 @@ const Summary = () => {
     },
     {
       icon: <FaClipboard />,
-      digits: orders,
+      digits: orders[0]?.total,
       isMoney: false,
       title: "Orders",
       color: "rgb(38, 198, 249)",
@@ -130,7 +110,7 @@ const Summary = () => {
     },
     {
       icon: <FaChartBar />,
-      digits: income ? income / 100 : "",
+      digits: income ? income[0]?.total / 100 : "",
       isMoney: true,
       title: "Earnings",
       color: "rgb(253, 181, 40)",
