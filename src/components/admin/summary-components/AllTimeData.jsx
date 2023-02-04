@@ -1,16 +1,21 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const AllTimeData = () => {
+  const { items } = useSelector((state) => state.products);
+  // const Users = useSelector((state) => state.auth);
+  // console.log(Users);
+
   return (
     <Main>
       <h3> All Time </h3>
       <Info>
         <Title>Users</Title>
-        <Data>200</Data>
+        <Data></Data>
       </Info>
       <Info>
-        <Title>Productss</Title>
-        <Data>200</Data>
+        <Title>Products</Title>
+        <Data>{items.length}</Data>
       </Info>
       <Info>
         <Title>Orders</Title>
