@@ -79,6 +79,13 @@ const SideNav = styled.div`
     text-decoration: none;
     margin-bottom: 1rem;
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    svg {
+      margin-right: 0.5rem;
+      font-size: 18px;
+    }
   }
 `;
 
