@@ -19,6 +19,8 @@ import Dashboard from "./components/admin/Dashboard";
 import Products from "./components/admin/Products";
 import Summary from "./components/admin/Summary";
 import CreateProduct from "./components/admin/CreateProduct";
+import Orders from "./components/admin/Orders";
+import Users from "./components/admin/Users";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
             <Route path="products" element={<Products />}>
               <Route path="create-product" element={<CreateProduct />} />
             </Route>
+            <Route path="orders" element={<Orders />} />
+            <Route path="users" element={<Users />} />
           </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/not-found" element={<NotFound />} />

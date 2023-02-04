@@ -1,6 +1,8 @@
+import { FaUsers, FaStore, FaClipboard, FaTachometerAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
 import styled from "styled-components";
+
 const Dashboard = () => {
   const auth = useSelector((state) => state.auth);
 
@@ -17,7 +19,7 @@ const Dashboard = () => {
           }
           to="/admin/summary"
         >
-          Summary
+          <FaTachometerAlt /> Summary
         </NavLink>
         <NavLink
           className={({ isActive }) =>
@@ -25,7 +27,23 @@ const Dashboard = () => {
           }
           to="/admin/products"
         >
-          Products
+          <FaStore /> Products
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-inactive"
+          }
+          to="/admin/orders"
+        >
+          <FaClipboard /> Orders
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-inactive"
+          }
+          to="/admin/users"
+        >
+          <FaUsers /> Users
         </NavLink>
       </SideNav>
       <Content>
