@@ -8,6 +8,18 @@ const AllTimeData = () => {
         <Title>Users</Title>
         <Data>200</Data>
       </Info>
+      <Info>
+        <Title>Productss</Title>
+        <Data>200</Data>
+      </Info>
+      <Info>
+        <Title>Orders</Title>
+        <Data>200</Data>
+      </Info>
+      <Info>
+        <Title>Earnings</Title>
+        <Data>200</Data>
+      </Info>
     </Main>
   );
 };
