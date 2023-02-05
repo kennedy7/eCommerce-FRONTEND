@@ -21,6 +21,7 @@ import Summary from "./components/admin/Summary";
 import CreateProduct from "./components/admin/CreateProduct";
 import Orders from "./components/admin/Orders";
 import Users from "./components/admin/Users";
+import ProductsList from "./components/admin/list/ProductsList";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             {/* <Route path="/not-found" element={<NotFound />} /> */}
             {/* another nested route */}
             <Route path="products" element={<Products />}>
+              <Route index element={<ProductsList />} />
               <Route path="create-product" element={<CreateProduct />} />
             </Route>
             <Route path="orders" element={<Orders />} />
