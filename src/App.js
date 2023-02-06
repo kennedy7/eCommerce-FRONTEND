@@ -36,7 +36,6 @@ function App() {
           {/* Nested Route */}
           <Route path="/admin" exact element={<Dashboard />}>
             <Route path="summary" element={<Summary />} />
-            {/* <Route path="/not-found" element={<NotFound />} /> */}
             {/* another nested route */}
             <Route path="products" element={<Products />}>
               <Route index element={<ProductsList />} />
