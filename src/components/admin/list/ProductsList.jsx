@@ -49,9 +49,10 @@ export default function ProductsList() {
       width: 70,
       renderCell: (params) => {
         return (
-         <Actions>
-            <Delete>Delete<Delete/>
-         </Actions>
+          <Actions>
+            <Delete>Delete</Delete>
+            <View>View</View>
+          </Actions>
         );
       },
     },
@@ -68,12 +69,6 @@ export default function ProductsList() {
     </div>
   );
 }
-
-// const ProductsList = () => {
-//   return <>List</>;
-// };
-
-// export default ProductsList;
 
 const ImageContainer = styled.div`
   img {
@@ -94,5 +89,10 @@ const Actions = styled.div`
     cursor: pointer;
   }
 `;
-const Delete = styled.div`
-background-color: rgb(255, 77, 73)`;
+const Delete = styled.button`
+  background-color: rgb(255, 77, 73);
+`;
+
+const View = styled.button`
+  background-color: rgb(114, 225, 40);
+`;
