@@ -43,13 +43,17 @@ export default function ProductsList() {
       width: 130,
     },
     {
-      field: "fullName",
-      headerName: "Full name",
-      description: "This column has a value getter and is not sortable.",
+      field: "actions",
+      headerName: "Actions",
       sortable: false,
-      width: 160,
-      valueGetter: (params) =>
-        `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+      width: 70,
+      renderCell: (params) => {
+        return (
+         <Actions>
+            <Delete>Delete<Delete/>
+         </Actions>
+        );
+      },
     },
   ];
   return (
@@ -90,4 +94,5 @@ const Actions = styled.div`
     cursor: pointer;
   }
 `;
-const Delete = styled.div``;
+const Delete = styled.div`
+background-color: rgb(255, 77, 73)`;
