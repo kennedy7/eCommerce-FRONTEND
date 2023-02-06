@@ -26,3 +26,19 @@ const ImageContainer = styled.div`
     width: 100%;
   }
 `;
+const productDetails = styled.div`
+  flex: 2;
+  margin-left: 2rem;
+  h3 {
+    font-size: 35px;
+  }
+  p span {
+    font-weight: bold;
+  }
+`;
+
+const Price = styled.div`
+  margin: 1rem 0;
+  font-weight: bold;
+  font-size: 25px;
+`;
