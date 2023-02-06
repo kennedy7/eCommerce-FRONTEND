@@ -46,7 +46,7 @@ export default function ProductsList() {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 70,
+      width: 170,
       renderCell: (params) => {
         return (
           <Actions>
@@ -94,5 +94,5 @@ const Delete = styled.button`
 `;
 
 const View = styled.button`
-  background-color: rgb(114, 225, 40);
+  background-color: rgb(80, 500, 40);
 `;
