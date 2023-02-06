@@ -2,12 +2,7 @@ import React from "react";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
