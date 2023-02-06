@@ -2,8 +2,15 @@ import styled from "styled-components";
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { url } from "../../../slices/api";
 
 export default function ProductsList() {
+  // const dispatch = useDispatch()
+  const handleDelete = () => {
+    axios.delete(`${url}/:id`);
+  };
+
   const { items } = useSelector((state) => state.products);
   const rows =
     items &&
@@ -50,7 +57,7 @@ export default function ProductsList() {
       renderCell: (params) => {
         return (
           <Actions>
-            <Delete>Delete</Delete>
+            <Delete onClick={() => handleDelete()}>Delete</Delete>
             <View>View</View>
           </Actions>
         );
