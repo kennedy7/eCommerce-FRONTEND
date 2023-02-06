@@ -46,7 +46,7 @@ function App() {
             <Route path="orders" element={<Orders />} />
             <Route path="users" element={<Users />} />
           </Route>
-          <Route path="*" element={<Navigate to="/not-found" />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>
