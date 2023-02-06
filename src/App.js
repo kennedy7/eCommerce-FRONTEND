@@ -30,23 +30,22 @@ function App() {
         <ToastContainer />
         <NavBar />
         <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/checkout-success" exact element={<CheckOutSuccess />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
           {/* Nested Route */}
           <Route path="/admin" exact element={<Dashboard />}>
-            <Route path="summary" element={<Summary />} />
             {/* another nested route */}
             <Route path="products" element={<Products />}>
               <Route index element={<ProductsList />} />
               <Route path="create-product" element={<CreateProduct />} />
             </Route>
+            <Route path="summary" element={<Summary />} />
             <Route path="orders" element={<Orders />} />
             <Route path="users" element={<Users />} />
           </Route>
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/not-found" element={<NotFound />} />
-          <Route path="/" exact element={<Home />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
         </Routes>
       </Router>
