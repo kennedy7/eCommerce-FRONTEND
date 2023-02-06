@@ -17,6 +17,9 @@ import CreateProduct from "./components/admin/CreateProduct";
 import Orders from "./components/admin/Orders";
 import Users from "./components/admin/Users";
 import ProductsList from "./components/admin/list/ProductsList";
+import Product from "./components/Details/product";
+import Order from "./components/Details/Order";
+import UserProfile from "./components/Details/UserProfile";
 
 function App() {
   return (
@@ -30,6 +33,9 @@ function App() {
           <Route path="/checkout-success" exact element={<CheckOutSuccess />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
+          <Route path="/product/:id" exact element={<Product />} />
+          <Route path="/order/:id" exact element={<Order />} />
+          <Route path="/user/:id" exact element={<UserProfile />} />
           {/* Nested Route */}
           <Route path="/admin" exact element={<Dashboard />}>
             {/* another nested route */}
