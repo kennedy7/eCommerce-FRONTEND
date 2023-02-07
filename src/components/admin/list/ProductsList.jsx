@@ -4,9 +4,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { url } from "../../../slices/api";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductsList() {
   // const dispatch = useDispatch()
+  const navigate = useNavigate();
   const handleDelete = () => {
     axios.delete(`${url}/:id`);
   };
@@ -58,7 +60,7 @@ export default function ProductsList() {
         return (
           <Actions>
             <Delete onClick={() => handleDelete()}>Delete</Delete>
-            <View>View</View>
+            <View onClick={() => navigate("/order/:id")}>View</View>
           </Actions>
         );
       },
