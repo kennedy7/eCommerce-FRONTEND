@@ -60,7 +60,9 @@ export default function ProductsList() {
         return (
           <Actions>
             <Delete onClick={() => handleDelete()}>Delete</Delete>
-            <View onClick={() => navigate("/order/:id")}>View</View>
+            <View onClick={() => navigate(`/order/${params.row.id}`)}>
+              View
+            </View>
           </Actions>
         );
       },
