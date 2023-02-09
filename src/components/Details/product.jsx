@@ -17,7 +17,6 @@ const Product = () => {
           `${url}/products/find/${params.id}`,
           setHeaders()
         );
-        // res.data.sort(compare);
         // console.log(res.data);
         setProduct(res.data);
       } catch (err) {
