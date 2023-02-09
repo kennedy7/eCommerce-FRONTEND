@@ -43,10 +43,11 @@ export const productCreate = createAsyncThunk(
 export const productDelete = createAsyncThunk(
   "products/productDelete",
   async (id) => {
-    // const navigate = useNavigate();
     try {
-      const response = await axios.delete(`${url}/product/${id}`, setHeaders());
-      //   navigate("/cart");
+      const response = await axios.delete(
+        `${url}/products/${id}`,
+        setHeaders()
+      );
       return response?.data;
     } catch (error) {
       console.log(error);

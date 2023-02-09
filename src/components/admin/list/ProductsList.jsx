@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { useSelector } from "react-redux";
-import axios from "axios";
-import { url } from "../../../slices/api";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { productDelete } from "../../../slices/productsSlice";
 
 export default function ProductsList() {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleDelete = (params) => {
-    axios.delete(`${url}/product/${params.row.id}`);
+
+  const handleDelete = (id) => {
+    dispatch(productDelete(id));
   };
 
   const { items } = useSelector((state) => state.products);
@@ -59,7 +59,7 @@ export default function ProductsList() {
       renderCell: (params) => {
         return (
           <Actions>
-            <Delete onClick={handleDelete(params)}>Delete</Delete>
+            <Delete onClick={handleDelete(params.row.id)}>Delete</Delete>
             <View onClick={() => navigate(`/product/${params.row.id}`)}>
               View
             </View>
@@ -76,6 +76,7 @@ export default function ProductsList() {
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
+        disableSelectionOnClick
       />
     </div>
   );
