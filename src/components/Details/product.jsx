@@ -1,7 +1,40 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { setHeaders, url } from "../../slices/api";
 
 const Product = () => {
-  return <>Product</>;
+  const params = useParams();
+  const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    async function fetchData() {
+      try {
+        const res = await axios.get(
+          `${url}/products/find/${params.id}`,
+          setHeaders()
+        );
+        // res.data.sort(compare);
+        // console.log(res.data);
+        setProduct(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+      setLoading(true);
+    }
+    fetchData();
+  }, []);
+  return (
+    <StyledProduct>
+      <ProductContainer>{product}</ProductContainer>
+    </StyledProduct>
+    // <>
+    //   Product: {params.id}
+    // </>
+  );
 };
 
 export default Product;
