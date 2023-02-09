@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 const initialState = {
   items: [],
   status: null,
-  CreateStatus: null,
-  DeleteStatus: null,
+  createStatus: null,
+  deleteStatus: null,
 };
 
 export const productsFetch = createAsyncThunk(
@@ -72,29 +72,29 @@ const productsSlice = createSlice({
       state.status = "rejected";
     },
     [productCreate.pending]: (state, action) => {
-      state.CreateStatus = "pending";
+      state.createStatus = "pending";
     },
     [productCreate.fulfilled]: (state, action) => {
-      state.CreateStatus = "success";
+      state.createStatus = "success";
       state.items.push(action.payload);
       toast.success("Product Created");
     },
     [productCreate.rejected]: (state, action) => {
-      state.CreateStatus = "rejected";
+      state.createStatus = "rejected";
     },
     [productDelete.pending]: (state, action) => {
-      state.DeleteStatus = "pending";
+      state.deleteStatus = "pending";
     },
     [productDelete.fulfilled]: (state, action) => {
       const newList = state.items.filter(
         (item) => item._id !== action.payload._id
       );
       state.items = newList;
-      state.DeleteStatus = "success";
+      state.deleteStatus = "success";
       toast.error("Product Deleted");
     },
     [productDelete.rejected]: (state, action) => {
-      state.DeleteStatus = "rejected";
+      state.deleteStatus = "rejected";
     },
   },
 });
