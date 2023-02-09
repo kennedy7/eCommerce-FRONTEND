@@ -36,9 +36,20 @@ const Product = () => {
         ) : (
           <>
             <ImageContainer>
-              <img src={product.image.url} alt=""></img>
+              <img src={product.image?.url} alt=""></img>
             </ImageContainer>
-            <ProductDetails></ProductDetails>
+            <ProductDetails>
+              <h3>{product.name}</h3>
+              <p>
+                <span>Brand: </span>
+                {product.brand}
+              </p>
+              <p>
+                <span>Description: </span>
+                {product.desc}
+              </p>
+            </ProductDetails>
+            <Price>${product.price.toLocaleString()}</Price>
           </>
         )}
       </ProductContainer>
