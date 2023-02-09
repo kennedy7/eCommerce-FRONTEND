@@ -35,7 +35,7 @@ const Product = () => {
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    navigate("cart");
+    navigate("/cart");
   };
 
   return (
