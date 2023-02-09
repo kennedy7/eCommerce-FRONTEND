@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setHeaders, url } from "./api";
 import axios from "axios";
 import { toast } from "react-toastify";
-// import { useNavigate } from "react-router-dom";
 const initialState = {
   items: [],
   status: null,
