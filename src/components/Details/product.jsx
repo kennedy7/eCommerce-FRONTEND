@@ -1,11 +1,16 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { setHeaders, url } from "../../slices/api";
+import { addToCart } from "../../slices/cartSlice";
 
 const Product = () => {
   const params = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   console.log("product", product);
@@ -28,6 +33,11 @@ const Product = () => {
     fetchData();
   }, []);
 
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    navigate("cart");
+  };
+
   return (
     <StyledProduct>
       <ProductContainer>
@@ -47,9 +57,16 @@ const Product = () => {
               <p>
                 <span>Description: </span>
                 {product.desc}
-              </p>
+              </p>{" "}
+              <Price>${product.price?.toLocaleString()}</Price>
+              <button
+                className="product-add-to-cart"
+                onClick={() => handleAddToCart(product)}
+              >
+                {" "}
+                Add to Cart
+              </button>
             </ProductDetails>
-            <Price>${product.price.toLocaleString()}</Price>
           </>
         )}
       </ProductContainer>
@@ -72,7 +89,7 @@ const ProductContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;
-  box-shadow: rgba(100, 100, 111, 0.2);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 5px;
   padding: 2rem;
 `;
