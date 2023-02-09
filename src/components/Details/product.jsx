@@ -8,6 +8,7 @@ const Product = () => {
   const params = useParams();
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
+  console.log("product", product);
 
   useEffect(() => {
     setLoading(true);
@@ -22,13 +23,25 @@ const Product = () => {
       } catch (err) {
         console.log(err);
       }
-      setLoading(true);
+      setLoading(false);
     }
     fetchData();
   }, []);
+
   return (
     <StyledProduct>
-      <ProductContainer>{product}</ProductContainer>
+      <ProductContainer>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <ImageContainer>
+              <img src={product.image.url} alt=""></img>
+            </ImageContainer>
+            <ProductDetails></ProductDetails>
+          </>
+        )}
+      </ProductContainer>
     </StyledProduct>
     // <>
     //   Product: {params.id}
@@ -58,7 +71,7 @@ const ImageContainer = styled.div`
     width: 100%;
   }
 `;
-const productDetails = styled.div`
+const ProductDetails = styled.div`
   flex: 2;
   margin-left: 2rem;
   h3 {
