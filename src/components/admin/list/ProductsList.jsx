@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { productDelete } from "../../../slices/productsSlice";
+import EditProduct from "../EditProduct";
 
 export default function ProductsList() {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ export default function ProductsList() {
         return (
           <Actions>
             <Delete onClick={() => handleDelete(params.row.id)}>Delete</Delete>
+            <EditProduct />
             <View onClick={() => navigate(`/product/${params.row.id}`)}>
               View
             </View>
@@ -89,7 +91,7 @@ const ImageContainer = styled.div`
 `;
 
 const Actions = styled.div`
-  width: 100px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   button {
