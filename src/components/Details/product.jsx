@@ -31,7 +31,7 @@ const Product = () => {
       setLoading(false);
     }
     fetchData();
-  }, []);
+  }, [params.id]);
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
