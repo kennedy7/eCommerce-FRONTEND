@@ -108,5 +108,5 @@ const Delete = styled.button`
 `;
 
 const View = styled.button`
-  background-color: rgb(80, 500, 40);
+  background-color: rgb(80, 200, 40);
 `;
