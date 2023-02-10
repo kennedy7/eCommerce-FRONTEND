@@ -40,15 +40,15 @@ export default function EditProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      productCreate({
-        name,
-        brand,
-        price,
-        desc,
-        image: productImg,
-      })
-    );
+    // dispatch(
+    //   productCreate({
+    //     name,
+    //     brand,
+    //     price,
+    //     desc,
+    //     image: productImg,
+    //   })
+    // );
   };
 
   const handleClickOpen = () => {
@@ -64,54 +64,56 @@ export default function EditProduct() {
       <Edit onClick={handleClickOpen}>Edit</Edit>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Product</DialogTitle>
-        <StyledEditProduct>
-          <StyledForm onSubmit={handleSubmit}>
-            <input
-              type="file"
-              accept="image/"
-              onChange={handleProductImageUpload}
-              required
-            />
-            <select onChange={(e) => setBrand(e.target.value)} required>
-              <option value="">Select Brand</option>
-              <option value="Iphone">Iphone</option>
-              <option value="Samsung">Samsung</option>
-              <option value="Nokia">Nokia</option>
-              <option value="Tecno">Tecno</option>
-              <option value="Infinix">Infinix</option>
-              <option value="other">Other</option>
-            </select>
-            <input
-              type="text"
-              placeholder="Name"
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+        <DialogContent>
+          <StyledEditProduct>
+            <StyledForm onSubmit={handleSubmit}>
+              <input
+                type="file"
+                accept="image/"
+                onChange={handleProductImageUpload}
+                required
+              />
+              <select onChange={(e) => setBrand(e.target.value)} required>
+                <option value="">Select Brand</option>
+                <option value="Iphone">Iphone</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Nokia">Nokia</option>
+                <option value="Tecno">Tecno</option>
+                <option value="Infinix">Infinix</option>
+                <option value="other">Other</option>
+              </select>
+              <input
+                type="text"
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
 
-            <input
-              type="text"
-              placeholder="Brief description"
-              onChange={(e) => setDesc(e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Price"
-              onChange={(e) => setPrice(e.target.value)}
-              required
-            />
-            <PrimaryButton type="submit">Submit</PrimaryButton>
-          </StyledForm>
-          <ImagePreview>
-            {productImg ? (
-              <>
-                <img src={productImg} alt="ProductImage" />
-              </>
-            ) : (
-              <p>Image Preview will appear here!</p>
-            )}{" "}
-          </ImagePreview>
-        </StyledEditProduct>
+              <input
+                type="text"
+                placeholder="Brief description"
+                onChange={(e) => setDesc(e.target.value)}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Price"
+                onChange={(e) => setPrice(e.target.value)}
+                required
+              />
+              <PrimaryButton type="submit">Submit</PrimaryButton>
+            </StyledForm>
+            <ImagePreview>
+              {productImg ? (
+                <>
+                  <img src={productImg} alt="ProductImage" />
+                </>
+              ) : (
+                <p>Image Preview will appear here!</p>
+              )}{" "}
+            </ImagePreview>
+          </StyledEditProduct>
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Subscribe</Button>
