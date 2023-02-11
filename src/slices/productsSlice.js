@@ -7,6 +7,7 @@ const initialState = {
   status: null,
   createStatus: null,
   deleteStatus: null,
+  updateStatus: null,
 };
 
 export const productsFetch = createAsyncThunk(
@@ -45,12 +46,11 @@ export const productUpdate = createAsyncThunk(
   async (values) => {
     // const navigate = useNavigate();
     try {
-      const response = await axios.post(
-        `${url}/products`,
+      const response = await axios.patch(
+        `${url}/products/${values.product._id}`,
         values,
         setHeaders()
       );
-      //   navigate("/cart");
       return response?.data;
     } catch (error) {
       console.log(error);
@@ -113,6 +113,17 @@ const productsSlice = createSlice({
     },
     [productDelete.rejected]: (state, action) => {
       state.deleteStatus = "rejected";
+    },
+    [productUpdate.pending]: (state, action) => {
+      state.updateStatus = "pending";
+    },
+    [productUpdate.fulfilled]: (state, action) => {
+      state.updateStatus = "success";
+      state.items.push(action.payload);
+      toast.success("Product Updated");
+    },
+    [productUpdate.rejected]: (state, action) => {
+      state.updateStatus = "rejected";
     },
   },
 });
