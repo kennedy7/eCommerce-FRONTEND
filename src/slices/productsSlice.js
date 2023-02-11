@@ -39,6 +39,25 @@ export const productCreate = createAsyncThunk(
     }
   }
 );
+
+export const productUpdate = createAsyncThunk(
+  "products/productUpdate",
+  async (values) => {
+    // const navigate = useNavigate();
+    try {
+      const response = await axios.post(
+        `${url}/products`,
+        values,
+        setHeaders()
+      );
+      //   navigate("/cart");
+      return response?.data;
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response?.data);
+    }
+  }
+);
 export const productDelete = createAsyncThunk(
   "products/productDelete",
   async (id) => {
