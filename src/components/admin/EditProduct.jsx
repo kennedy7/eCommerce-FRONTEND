@@ -95,12 +95,18 @@ export default function EditProduct({ prodId }) {
                 onChange={handleProductImageUpload}
               />
               <select onChange={(e) => setBrand(e.target.value)} required>
-                <option value={brand}>{brand}</option>
+                <option value="">Select Brand</option>
                 <option value="Iphone">Iphone</option>
                 <option value="Samsung">Samsung</option>
                 <option value="Nokia">Nokia</option>
                 <option value="Tecno">Tecno</option>
                 <option value="Infinix">Infinix</option>
+                <option value="oraimo">Oraimo</option>
+                <option value="hp">Hp</option>
+                <option value="dell">Dell</option>
+                <option value="Zealot">Zealot</option>
+                <option value="Mac">Macbook</option>
+                <option value="SPeakers">Speaker</option>
                 <option value="other">Other</option>
               </select>
               <input
