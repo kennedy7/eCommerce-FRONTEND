@@ -118,9 +118,12 @@ const productsSlice = createSlice({
       state.updateStatus = "pending";
     },
     [productUpdate.fulfilled]: (state, action) => {
+      const updatedProduct = state.items.map((product) =>
+        product._id === action.payload._id ? action.payload : product
+      );
+      state.items = updatedProduct;
       state.updateStatus = "success";
-      state.items.push(action.payload);
-      toast.success("Product Updated");
+      toast.info("Product Updated");
     },
     [productUpdate.rejected]: (state, action) => {
       state.updateStatus = "rejected";

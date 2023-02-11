@@ -10,6 +10,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PrimaryButton } from "./CommonStyled";
+import { productUpdate } from "../../slices/productsSlice";
 
 export default function EditProduct({ prodId }) {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ export default function EditProduct({ prodId }) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         setProductImg(reader.result);
+        setPreviewImg(reader.result);
       };
     } else {
       setProductImg("");
@@ -43,15 +45,18 @@ export default function EditProduct({ prodId }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(
-    //   productCreate({
-    //     name,
-    //     brand,
-    //     price,
-    //     desc,
-    //     image: productImg,
-    //   })
-    // );
+    dispatch(
+      productUpdate({
+        productImg,
+        product: {
+          ...currentProd,
+          name: name,
+          brand: brand,
+          price: price,
+          desc: desc,
+        },
+      })
+    );
   };
 
   const handleClickOpen = () => {
@@ -64,7 +69,7 @@ export default function EditProduct({ prodId }) {
     setPrice(selectedProd.price);
     setDesc(selectedProd.desc);
     setPreviewImg(selectedProd.image.url);
-
+    setProductImg("");
     // console.log( selectedProd)
   };
 
