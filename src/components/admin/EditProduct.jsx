@@ -1,7 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -94,7 +93,6 @@ export default function EditProduct({ prodId }) {
                 type="file"
                 accept="image/"
                 onChange={handleProductImageUpload}
-                required
               />
               <select onChange={(e) => setBrand(e.target.value)} required>
                 <option value={brand}>{brand}</option>
@@ -142,7 +140,6 @@ export default function EditProduct({ prodId }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
       </Dialog>
     </div>
