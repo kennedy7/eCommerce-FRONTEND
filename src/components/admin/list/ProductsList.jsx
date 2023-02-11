@@ -61,7 +61,7 @@ export default function ProductsList() {
         return (
           <Actions>
             <Delete onClick={() => handleDelete(params.row.id)}>Delete</Delete>
-            <EditProduct />
+            <EditProduct prodId={params.row.id} />
             <View onClick={() => navigate(`/product/${params.row.id}`)}>
               View
             </View>

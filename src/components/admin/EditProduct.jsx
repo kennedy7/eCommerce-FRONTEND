@@ -5,14 +5,15 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+
 import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PrimaryButton } from "./CommonStyled";
 
-export default function EditProduct() {
+export default function EditProduct({ prodId }) {
   const dispatch = useDispatch();
+  const { items } = useSelector((state) => state.products);
 
   const [open, setOpen] = useState(false);
   const [productImg, setProductImg] = useState("");
@@ -20,6 +21,8 @@ export default function EditProduct() {
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
+  const [currentProd, setCurrentProd] = useState({});
+  const [previewImg, setPreviewImg] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -53,6 +56,16 @@ export default function EditProduct() {
 
   const handleClickOpen = () => {
     setOpen(true);
+    let selectedProd = items.filter((item) => item._id === prodId);
+    selectedProd = selectedProd[0];
+    setCurrentProd(selectedProd);
+    setName(selectedProd.name);
+    setBrand(selectedProd.brand);
+    setPrice(selectedProd.price);
+    setDesc(selectedProd.desc);
+    setPreviewImg(selectedProd.image.url);
+
+    // console.log( selectedProd)
   };
 
   const handleClose = () => {
@@ -62,7 +75,12 @@ export default function EditProduct() {
   return (
     <div>
       <Edit onClick={handleClickOpen}>Edit</Edit>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth={true}
+        maxWidth={"md"}
+      >
         <DialogTitle>Edit Product</DialogTitle>
         <DialogContent>
           <StyledEditProduct>
@@ -74,7 +92,7 @@ export default function EditProduct() {
                 required
               />
               <select onChange={(e) => setBrand(e.target.value)} required>
-                <option value="">Select Brand</option>
+                <option value={brand}>{brand}</option>
                 <option value="Iphone">Iphone</option>
                 <option value="Samsung">Samsung</option>
                 <option value="Nokia">Nokia</option>
@@ -85,6 +103,7 @@ export default function EditProduct() {
               <input
                 type="text"
                 placeholder="Name"
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
               />
@@ -92,21 +111,23 @@ export default function EditProduct() {
               <input
                 type="text"
                 placeholder="Brief description"
+                value={desc}
                 onChange={(e) => setDesc(e.target.value)}
                 required
               />
               <input
                 type="text"
                 placeholder="Price"
+                value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 required
               />
               <PrimaryButton type="submit">Submit</PrimaryButton>
             </StyledForm>
             <ImagePreview>
-              {productImg ? (
+              {previewImg ? (
                 <>
-                  <img src={productImg} alt="ProductImage" />
+                  <img src={previewImg} alt="ProductImage" />
                 </>
               ) : (
                 <p>Image Preview will appear here!</p>
