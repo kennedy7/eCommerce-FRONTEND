@@ -1,5 +1,11 @@
+import OrdersList from "./list/OrdersList";
+
 const Orders = () => {
-  return <h5>Orders page</h5>;
+  return (
+    <>
+      <OrdersList />
+    </>
+  );
 };
 
 export default Orders;
