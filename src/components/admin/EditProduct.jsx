@@ -94,7 +94,11 @@ export default function EditProduct({ prodId }) {
                 accept="image/"
                 onChange={handleProductImageUpload}
               />
-              <select onChange={(e) => setBrand(e.target.value)} required>
+              <select
+                onChange={(e) => setBrand(e.target.value)}
+                value={brand}
+                required
+              >
                 <option value="">Select Brand</option>
                 <option value="Iphone">Iphone</option>
                 <option value="Samsung">Samsung</option>
