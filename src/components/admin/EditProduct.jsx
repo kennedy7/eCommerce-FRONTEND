@@ -13,7 +13,7 @@ import { productUpdate } from "../../slices/productsSlice";
 
 export default function EditProduct({ prodId }) {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.products);
+  const { items, updateStatus } = useSelector((state) => state.products);
 
   const [open, setOpen] = useState(false);
   const [productImg, setProductImg] = useState("");
@@ -133,7 +133,9 @@ export default function EditProduct({ prodId }) {
                 onChange={(e) => setPrice(e.target.value)}
                 required
               />
-              <PrimaryButton type="submit">Submit</PrimaryButton>
+              <PrimaryButton type="submit">
+                {updateStatus === "pending" ? "updating..." : "Submit"}
+              </PrimaryButton>
             </StyledForm>
             <ImagePreview>
               {previewImg ? (
