@@ -23,3 +23,17 @@ const Pending = styled.div`
   border-radius: 3px;
   font-size: 14px;
 `;
+const Dispatched = styled.div`
+  color: rgb(38, 198, 249);
+  backgound-color: rgba(253, 181, 40, 0.12);
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-size: 14px;
+`;
+const Delivered = styled.div`
+  color: rgb(102, 108, 255);
+  backgound-color: rgba(253, 181, 40, 0.12);
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-size: 14px;
+`;
