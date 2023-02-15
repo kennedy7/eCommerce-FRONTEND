@@ -2,11 +2,11 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setHeaders, url } from "./api";
 import { toast } from "react-toastify";
-import order from "../../../backend/models/order";
 
 const initialState = {
   list: [],
   status: null,
+  updatestatus: null,
 };
 
 export const ordersFetch = createAsyncThunk("orders/ordersFetch", async () => {
@@ -44,8 +44,25 @@ const ordersSlice = createSlice({
       state.status = "pending";
     },
     [ordersFetch.fulfilled]: (state, action) => {
+      state.list = action.payload;
       state.status = "success";
-      action.list = action.payload;
+    },
+    [ordersFetch.rejected]: (state, action) => {
+      state.status = "rejected";
+    },
+    [ordersUpdate.pending]: (state, action) => {
+      state.updatestatus = "pending";
+    },
+    [ordersUpdate.fulfilled]: (state, action) => {
+      const updatedProduct = state.list.map((order) =>
+        order._id === action.payload._id ? action.payload : order
+      );
+      state.list = updatedProduct;
+      state.updateStatus = "success";
+      toast.info("Order Updated");
+    },
+    [ordersUpdate.rejected]: (state, action) => {
+      state.updatestatus = "rejected";
     },
   },
 });
