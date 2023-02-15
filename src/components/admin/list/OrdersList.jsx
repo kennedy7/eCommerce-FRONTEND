@@ -3,8 +3,8 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { productDelete } from "../../../slices/productsSlice";
-import EditProduct from "../EditProduct";
+import moment from "moment";
+import { ordersFetch } from "../../../slices/ordersSlice";
 
 export default function OrdersList() {
   const dispatch = useDispatch();
@@ -14,57 +14,67 @@ export default function OrdersList() {
     dispatch(productDelete(id));
   };
 
-  const { items } = useSelector((state) => state.products);
+  const { list } = useSelector((state) => state.orders);
+
+  React.useEffect(() => {
+    dispatch(ordersFetch());
+  }, [dispatch]);
   const rows =
-    items &&
-    items.map((item) => {
+    list &&
+    list.map((order) => {
       return {
-        id: item._id,
-        imageUrl: item.image.url,
-        pName: item.name,
-        pDesc: item.desc,
-        price: item.price.toLocaleString(),
+        id: order._id,
+        cName: order.shipping.name,
+        amount: (order.total / 100)?.toLocaleString(),
+        dStatus: order.delivery_status,
+        date: moment(order.createdAt).fromNow(),
       };
     });
 
   const columns = [
     { field: "id", headerName: "ID", width: 220 },
     {
-      field: "imageUrl",
-      headerName: "image",
-      width: 80,
+      field: "cName",
+      headerName: "Name",
+      width: 120,
+    },
+    { field: "amount", headerName: "Amount($)", width: 100 },
+    {
+      field: "dStatus",
+      headerName: "Status",
+      width: 130,
       renderCell: (params) => {
         return (
-          <ImageContainer>
-            <img src={params.row.imageUrl} alt="" />
-          </ImageContainer>
+          <div>
+            {params.row.dStatus === "pending" ? (
+              <Pending>Pending</Pending>
+            ) : params.row.dStatus === "dispatched" ? (
+              <Dispatched>Dispatched</Dispatched>
+            ) : params.row.dStatus === "delivered" ? (
+              <Delivered>Delivered</Delivered>
+            ) : (
+              "error"
+            )}
+          </div>
         );
       },
     },
-    { field: "pName", headerName: "Name", width: 130 },
     {
-      field: "pDesc",
-      headerName: "Description",
-      width: 130,
-    },
-    {
-      field: "price",
-      headerName: "Price",
+      field: "date",
+      headerName: "Date",
       width: 130,
     },
     {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 170,
+      width: 220,
       renderCell: (params) => {
         return (
           <Actions>
-            <Delete onClick={() => handleDelete(params.row.id)}>Delete</Delete>
-            <EditProduct prodId={params.row.id} />
-            <View onClick={() => navigate(`/product/${params.row.id}`)}>
-              View
-            </View>
+            <DispatchBtn>Dispatch</DispatchBtn>
+            <DeliveryBtn>Deliver</DeliveryBtn>
+            <View>View</View>
           </Actions>
         );
       },
