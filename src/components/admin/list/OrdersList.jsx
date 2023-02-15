@@ -10,9 +10,9 @@ export default function OrdersList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleDelete = (id) => {
-    dispatch(productDelete(id));
-  };
+  //   const handleDelete = (id) => {
+  //     dispatch(productDelete(id));
+  //   };
 
   const { list } = useSelector((state) => state.orders);
 
@@ -26,7 +26,7 @@ export default function OrdersList() {
         id: order._id,
         cName: order.shipping.name,
         amount: (order.total / 100)?.toLocaleString(),
-        dStatus: order.delivery_status,
+        dStatus: order.deliveryStatus,
         date: moment(order.createdAt).fromNow(),
       };
     });
@@ -94,12 +94,6 @@ export default function OrdersList() {
   );
 }
 
-const ImageContainer = styled.div`
-  img {
-    height: 40px;
-  }
-`;
-
 const Actions = styled.div`
   width: 100%;
   display: flex;
@@ -113,41 +107,34 @@ const Actions = styled.div`
     cursor: pointer;
   }
 `;
-const Delete = styled.button`
-  background-color: rgb(255, 77, 73);
+
+const DispatchBtn = styled.button`
+  background-color: rgb(38, 198, 249);
+`;
+const DeliveryBtn = styled.button`
+  background-color: rgb(102, 108, 255);
 `;
 
 const View = styled.button`
-  background-color: rgb(80, 200, 40);
-`;
-
-const DispatchBtn = styled.div`
-  backgound-color: rgba(38, 198, 249);
-`;
-const DeliveryBtn = styled.div`
-  backgound-color: rgba(102, 108, 255);
-`;
-
-const View = styled.button`
-  backgound-color: rgb(114, 225, 40);
+  background-color: rgb(114, 225, 40);
 `;
 const Pending = styled.div`
   color: rgb(253, 181, 40);
-  backgound-color: rgba(253, 181, 40, 0.12);
+  background-color: rgba(253, 181, 40, 0.12);
   padding: 3px 5px;
   border-radius: 3px;
   font-size: 14px;
 `;
 const Dispatched = styled.div`
   color: rgb(38, 198, 249);
-  backgound-color: rgba(253, 181, 40, 0.12);
+  background-color: rgba(253, 181, 40, 0.12);
   padding: 3px 5px;
   border-radius: 3px;
   font-size: 14px;
 `;
 const Delivered = styled.div`
   color: rgb(102, 108, 255);
-  backgound-color: rgba(253, 181, 40, 0.12);
+  background-color: rgba(253, 181, 40, 0.12);
   padding: 3px 5px;
   border-radius: 3px;
   font-size: 14px;
