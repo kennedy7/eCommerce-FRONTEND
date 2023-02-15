@@ -8,12 +8,14 @@ import productsReducer, { productsFetch } from "./slices/productsSlice";
 import { productsApi } from "./slices/productsApi";
 import cartReducer, { getTotals } from "./slices/cartSlice";
 import authReducer, { loadUser } from "./slices/authSlice";
+import ordersReducer from "./slices/ordersSlice";
 
 const store = configureStore({
   reducer: {
     products: productsReducer,
     cart: cartReducer,
     auth: authReducer,
+    orders: ordersReducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

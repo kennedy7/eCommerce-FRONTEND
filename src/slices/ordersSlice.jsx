@@ -66,3 +66,4 @@ const ordersSlice = createSlice({
     },
   },
 });
+export default ordersSlice.reducer;
