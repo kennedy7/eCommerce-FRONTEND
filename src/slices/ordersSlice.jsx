@@ -45,7 +45,7 @@ const ordersSlice = createSlice({
     },
     [ordersFetch.fulfilled]: (state, action) => {
       state.status = "success";
-      action.orders = action.payload;
+      action.list = action.payload;
     },
   },
 });
