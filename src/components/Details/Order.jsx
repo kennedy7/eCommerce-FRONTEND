@@ -1,133 +1,87 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import * as React from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import moment from "moment";
-import { ordersFetch, orderUpdate } from "../../../slices/ordersSlice";
+import { setHeaders, url } from "../../slices/api";
 
-export default function OrdersList() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const Order = () => {
+  const params = useParams();
 
-  //   const handleDelete = (id) => {
-  //     dispatch(productDelete(id));
-  //   };
-  const handleOrderDispatch = (id) => {
-    dispatch(orderUpdate({ id, deliveryStatus: "dispatched" }));
-  };
-  const handleOrderDeliver = (id) => {
-    dispatch(orderUpdate({ id, deliveryStatus: "delivered" }));
-  };
+  const [order, setOrder] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  const { list } = useSelector((state) => state.orders);
-
-  React.useEffect(() => {
-    dispatch(ordersFetch());
-  }, [dispatch]);
-  const rows =
-    list &&
-    list.map((order) => {
-      return {
-        id: order._id,
-        cName: order.shipping.name,
-        amount: (order.total / 100)?.toLocaleString(),
-        dStatus: order.deliveryStatus,
-        date: moment(order.createdAt).fromNow(),
-      };
-    });
-
-  const columns = [
-    { field: "id", headerName: "ID", width: 220 },
-    {
-      field: "cName",
-      headerName: "Name",
-      width: 120,
-    },
-    { field: "amount", headerName: "Amount($)", width: 100 },
-    {
-      field: "dStatus",
-      headerName: "Status",
-      width: 130,
-      renderCell: (params) => {
-        return (
-          <div>
-            {params.row.dStatus === "pending" ? (
-              <Pending>Pending</Pending>
-            ) : params.row.dStatus === "dispatched" ? (
-              <Dispatched>Dispatched</Dispatched>
-            ) : params.row.dStatus === "delivered" ? (
-              <Delivered>Delivered</Delivered>
-            ) : (
-              "error"
-            )}
-          </div>
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          `${url}/orders/findOne/${params.id}`,
+          setHeaders()
         );
-      },
-    },
-    {
-      field: "date",
-      headerName: "Date",
-      width: 130,
-    },
-    {
-      field: "actions",
-      headerName: "Actions",
-      sortable: false,
-      width: 220,
-      renderCell: (params) => {
-        return (
-          <Actions>
-            <DispatchBtn onClick={() => handleOrderDispatch(params.row.id)}>
-              Dispatch
-            </DispatchBtn>
-            <DeliveryBtn onClick={() => handleOrderDeliver(params.row.id)}>
-              Deliver
-            </DeliveryBtn>
-            <View>View</View>
-          </Actions>
-        );
-      },
-    },
-  ];
+        // console.log(res.data);
+        setOrder(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+      setLoading(false);
+    };
+    fetchOrder();
+  }, [params.id]);
+
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
-      />
-    </div>
+    <StyledOrder>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <OrderContainer>
+            <h2>Order Details</h2>
+            <p>
+              Delivery Status: {""}
+              {order.deliveryStatus === "pending" ? (
+                <Pending>Pending</Pending>
+              ) : order.deliveryStatus === "dispatched" ? (
+                <Dispatched>Dispatched</Dispatched>
+              ) : order.deliveryStatus === "delivered" ? (
+                <Delivered>Delivered</Delivered>
+              ) : (
+                "error"
+              )}
+            </p>
+
+            <h3>Ordered Products</h3>
+            <Items>
+              {order.products?.map((product, index) => (
+                <Item key={index}>
+                  <span>{product.description}</span>
+                  <span>{product.quantity}</span>
+                  <span>
+                    {" "}
+                    {"$" + (product.amount_total / 100).toLocaleString()}
+                  </span>
+                </Item>
+              ))}
+            </Items>
+
+            <div>
+              <h3>Total Price</h3>
+              <p>{"$" + (order.total / 100).toLocaleString()}</p>
+            </div>
+            <div>
+              <h3> Shipping Details</h3>
+              <p>Customer: {order.shipping?.name}</p>
+              <p>City: {order.shipping?.address.city}</p>
+              <p>Email: {order.shipping?.email}</p>
+            </div>
+          </OrderContainer>
+        </>
+      )}
+    </StyledOrder>
   );
-}
+};
 
-const Actions = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  button {
-    border: none;
-    outline: none;
-    padding: 3px 5px;
-    color: white;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-`;
-
-const DispatchBtn = styled.button`
-  background-color: rgb(38, 198, 249);
-`;
-const DeliveryBtn = styled.button`
-  background-color: rgb(102, 108, 255);
-`;
-
-const View = styled.button`
-  background-color: rgb(114, 225, 40);
-`;
+export default Order;
 const StyledOrder = styled.div`
   margin: 3rem;
   display: flex;
@@ -144,6 +98,14 @@ const OrderContainer = styled.div`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 5px;
   padding: 2rem;
+`;
+const Items = styled.div`
+  span {
+    margin-right: 1.5rem;
+    &:first-child {
+      font-weight: bold;
+    }
+  }
 `;
 const Item = styled.li`
   margin-left: 0.5rem;
