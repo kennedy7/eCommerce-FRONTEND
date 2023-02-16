@@ -55,13 +55,9 @@ export default function OrdersList() {
             {params.row.dStatus === "pending" ? (
               <Pending>Pending</Pending>
             ) : params.row.dStatus === "dispatched" ? (
-              <Dispatched onClick={() => handleOrderDispatch(params.row.id)}>
-                Dispatched
-              </Dispatched>
+              <Dispatched>Dispatched</Dispatched>
             ) : params.row.dStatus === "delivered" ? (
-              <Delivered onClick={() => handleOrderDeliver(params.row.id)}>
-                Delivered
-              </Delivered>
+              <Delivered>Delivered</Delivered>
             ) : (
               "error"
             )}
@@ -82,8 +78,12 @@ export default function OrdersList() {
       renderCell: (params) => {
         return (
           <Actions>
-            <DispatchBtn>Dispatch</DispatchBtn>
-            <DeliveryBtn>Deliver</DeliveryBtn>
+            <DispatchBtn onClick={() => handleOrderDispatch(params.row.id)}>
+              Dispatch
+            </DispatchBtn>
+            <DeliveryBtn onClick={() => handleOrderDeliver(params.row.id)}>
+              Deliver
+            </DeliveryBtn>
             <View>View</View>
           </Actions>
         );
@@ -127,6 +127,11 @@ const DeliveryBtn = styled.button`
 
 const View = styled.button`
   background-color: rgb(114, 225, 40);
+`;
+
+const Item = styled.li`
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 const Pending = styled.div`
   color: rgb(253, 181, 40);
