@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import { ordersFetch } from "../../../slices/ordersSlice";
+import { ordersFetch, orderUpdate } from "../../../slices/ordersSlice";
 
 export default function OrdersList() {
   const dispatch = useDispatch();
@@ -13,6 +13,12 @@ export default function OrdersList() {
   //   const handleDelete = (id) => {
   //     dispatch(productDelete(id));
   //   };
+  const handleOrderDispatch = (id) => {
+    dispatch(orderUpdate({ id, deliveryStatus: "dispatched" }));
+  };
+  const handleOrderDeliver = (id) => {
+    dispatch(orderUpdate({ id, deliveryStatus: "delivered" }));
+  };
 
   const { list } = useSelector((state) => state.orders);
 
@@ -49,9 +55,13 @@ export default function OrdersList() {
             {params.row.dStatus === "pending" ? (
               <Pending>Pending</Pending>
             ) : params.row.dStatus === "dispatched" ? (
-              <Dispatched>Dispatched</Dispatched>
+              <Dispatched onClick={() => handleOrderDispatch(params.row.id)}>
+                Dispatched
+              </Dispatched>
             ) : params.row.dStatus === "delivered" ? (
-              <Delivered>Delivered</Delivered>
+              <Delivered onClick={() => handleOrderDeliver(params.row.id)}>
+                Delivered
+              </Delivered>
             ) : (
               "error"
             )}

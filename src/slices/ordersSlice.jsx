@@ -18,14 +18,21 @@ export const ordersFetch = createAsyncThunk("orders/ordersFetch", async () => {
   }
 });
 
-export const ordersUpdate = createAsyncThunk(
+export const orderUpdate = createAsyncThunk(
   "orders/orderUpdate",
-  async (values) => {
-    // const navigate = useNavigate();
+  async (values, { getState }) => {
+    const state = getState();
+    let currentOrder = state.orders.list.filter(
+      (order) => order._id === values.id
+    );
+    const newOrder = {
+      ...currentOrder[0],
+      deliveryStatus: values.deliveryStatus,
+    };
     try {
       const response = await axios.patch(
-        `${url}/products/${values.product._id}`,
-        values,
+        `${url}/orders/${values.id}`,
+        newOrder,
         setHeaders()
       );
       return response?.data;
@@ -50,18 +57,18 @@ const ordersSlice = createSlice({
     [ordersFetch.rejected]: (state, action) => {
       state.status = "rejected";
     },
-    [ordersUpdate.pending]: (state, action) => {
+    [orderUpdate.pending]: (state, action) => {
       state.updatestatus = "pending";
     },
-    [ordersUpdate.fulfilled]: (state, action) => {
-      const updatedProduct = state.list.map((order) =>
+    [orderUpdate.fulfilled]: (state, action) => {
+      const updatedOrder = state.list.map((order) =>
         order._id === action.payload._id ? action.payload : order
       );
-      state.list = updatedProduct;
+      state.list = updatedOrder;
       state.updateStatus = "success";
       toast.info("Order Updated");
     },
-    [ordersUpdate.rejected]: (state, action) => {
+    [orderUpdate.rejected]: (state, action) => {
       state.updatestatus = "rejected";
     },
   },
