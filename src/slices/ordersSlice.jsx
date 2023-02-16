@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const initialState = {
   list: [],
   status: null,
-  updatestatus: null,
+  updateStatus: null,
 };
 
 export const ordersFetch = createAsyncThunk("orders/ordersFetch", async () => {
@@ -58,7 +58,7 @@ const ordersSlice = createSlice({
       state.status = "rejected";
     },
     [orderUpdate.pending]: (state, action) => {
-      state.updatestatus = "pending";
+      state.updateStatus = "pending";
     },
     [orderUpdate.fulfilled]: (state, action) => {
       const updatedOrder = state.list.map((order) =>
@@ -69,7 +69,7 @@ const ordersSlice = createSlice({
       toast.info("Order Updated");
     },
     [orderUpdate.rejected]: (state, action) => {
-      state.updatestatus = "rejected";
+      state.updateStatus = "rejected";
     },
   },
 });
