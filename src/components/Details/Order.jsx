@@ -82,6 +82,7 @@ const Order = () => {
 };
 
 export default Order;
+
 const StyledOrder = styled.div`
   margin: 3rem;
   display: flex;
@@ -94,7 +95,6 @@ const OrderContainer = styled.div`
   max-width: 500px;
   width: 100%;
   height: auto;
-  display: flex;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 5px;
   padding: 2rem;

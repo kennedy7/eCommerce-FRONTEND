@@ -10,9 +10,6 @@ export default function OrdersList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //   const handleDelete = (id) => {
-  //     dispatch(productDelete(id));
-  //   };
   const handleOrderDispatch = (id) => {
     dispatch(orderUpdate({ id, deliveryStatus: "dispatched" }));
   };
@@ -84,7 +81,7 @@ export default function OrdersList() {
             <DeliveryBtn onClick={() => handleOrderDeliver(params.row.id)}>
               Deliver
             </DeliveryBtn>
-            <View>View</View>
+            <View onClick={() => navigate(`/order/${params.id}`)}>View</View>
           </Actions>
         );
       },
@@ -129,10 +126,6 @@ const View = styled.button`
   background-color: rgb(114, 225, 40);
 `;
 
-const Item = styled.li`
-  margin-left: 0.5rem;
-  margin-bottom: 0.5rem;
-`;
 const Pending = styled.div`
   color: rgb(253, 181, 40);
   background-color: rgba(253, 181, 40, 0.12);
