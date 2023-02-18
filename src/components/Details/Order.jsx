@@ -38,7 +38,7 @@ const Order = () => {
           <OrderContainer>
             <h2>Order Details</h2>
             <p>
-              Delivery Status: {""}
+              Delivery Status:{" "}
               {order.deliveryStatus === "pending" ? (
                 <Pending>Pending</Pending>
               ) : order.deliveryStatus === "dispatched" ? (
@@ -111,21 +111,21 @@ const Item = styled.li`
   margin-left: 0.5rem;
   margin-bottom: 0.5rem;
 `;
-const Pending = styled.div`
+const Pending = styled.span`
   color: rgb(253, 181, 40);
   background-color: rgba(253, 181, 40, 0.12);
   padding: 3px 5px;
   border-radius: 3px;
   font-size: 14px;
 `;
-const Dispatched = styled.div`
+const Dispatched = styled.span`
   color: rgb(38, 198, 249);
   background-color: rgba(253, 181, 40, 0.12);
   padding: 3px 5px;
   border-radius: 3px;
   font-size: 14px;
 `;
-const Delivered = styled.div`
+const Delivered = styled.span`
   color: rgb(102, 108, 255);
   background-color: rgba(253, 181, 40, 0.12);
   padding: 3px 5px;
