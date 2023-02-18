@@ -145,5 +145,5 @@ const Delivered = styled.div`
   background-color: rgba(253, 181, 40, 0.12);
   padding: 3px 5px;
   border-radius: 3px;
-  font-size: 15px;
+  font-size: 14px;
 `;
