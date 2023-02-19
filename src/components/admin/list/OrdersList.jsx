@@ -95,7 +95,7 @@ export default function OrdersList() {
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
-        // disableSelectionOnClick
+        disableSelectionOnClick
       />
     </div>
   );
