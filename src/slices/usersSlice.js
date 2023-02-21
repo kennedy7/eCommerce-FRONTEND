@@ -36,5 +36,12 @@ const usersSlice = createSlice({
     [usersFetch.pending]: (state, action) => {
       state.status = "pending";
     },
+    [usersFetch.fulfilled]: (state, action) => {
+      state.list = action.payload;
+      state.status = "success";
+    },
+    [usersFetch.rejected]: (state, action) => {
+      state.status = "rejected";
+    },
   },
 });
