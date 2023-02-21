@@ -43,5 +43,19 @@ const usersSlice = createSlice({
     [usersFetch.rejected]: (state, action) => {
       state.status = "rejected";
     },
+    [userDelete.pending]: (state, action) => {
+      state.deleteStatus = "pending";
+    },
+    [userDelete.fulfilled]: (state, action) => {
+      const newlist = state.list.filter((user) => user._id !== action.payload);
+      state.list = newlist;
+      state.deleteStatus = "success";
+    },
+    [userDelete.rejected]: (state, action) => {
+      state.deleteStatus = "rejected";
+      toast.error("User Deleted");
+    },
   },
 });
+
+export default usersSlice.reducer;
