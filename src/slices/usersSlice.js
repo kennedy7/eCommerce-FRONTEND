@@ -23,7 +23,8 @@ export const userDelete = createAsyncThunk("users/userDelete", async (id) => {
     const response = await axios.delete(`${url}/users/${id}`, setHeaders());
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.response.data);
+    toast.error(error.response?.data);
   }
 });
 
