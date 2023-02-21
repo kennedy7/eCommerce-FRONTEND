@@ -9,6 +9,7 @@ import { productsApi } from "./slices/productsApi";
 import cartReducer, { getTotals } from "./slices/cartSlice";
 import authReducer, { loadUser } from "./slices/authSlice";
 import ordersReducer from "./slices/ordersSlice";
+import usersReducer from "./slices/usersSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     cart: cartReducer,
     auth: authReducer,
     orders: ordersReducer,
+    users: usersReducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
