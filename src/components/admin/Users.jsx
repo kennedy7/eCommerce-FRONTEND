@@ -1,5 +1,11 @@
+import UsersList from "./list/UsersList";
+
 const Users = () => {
-  return <h5>Users page</h5>;
+  return (
+    <>
+      <UsersList />
+    </>
+  );
 };
 
 export default Users;
