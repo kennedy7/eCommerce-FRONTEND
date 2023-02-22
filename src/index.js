@@ -8,16 +8,16 @@ import productsReducer, { productsFetch } from "./slices/productsSlice";
 import { productsApi } from "./slices/productsApi";
 import cartReducer, { getTotals } from "./slices/cartSlice";
 import authReducer, { loadUser } from "./slices/authSlice";
-import ordersReducer from "./slices/ordersSlice";
-import usersReducer from "./slices/usersSlice";
+import ordersSlice from "./slices/ordersSlice";
+import usersSlice from "./slices/usersSlice";
 
 const store = configureStore({
   reducer: {
     products: productsReducer,
     cart: cartReducer,
     auth: authReducer,
-    orders: ordersReducer,
-    users: usersReducer,
+    orders: ordersSlice,
+    users: usersSlice,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

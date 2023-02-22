@@ -26,7 +26,7 @@ function App() {
     <div className="App">
       <Router>
         <ToastContainer />
-        <NavBar />
+        {/* <NavBar /> */}
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/cart" element={<Cart />} />
