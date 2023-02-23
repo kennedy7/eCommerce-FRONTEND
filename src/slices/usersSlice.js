@@ -21,7 +21,7 @@ export const usersFetch = createAsyncThunk("users/usersFetch", async () => {
 export const userDelete = createAsyncThunk("users/userDelete", async (id) => {
   try {
     const response = await axios.delete(`${url}/users/${id}`, setHeaders());
-    return response.data;
+    return response?.data;
   } catch (error) {
     console.log(error.response.data);
     toast.error(error.response?.data);
@@ -47,7 +47,9 @@ const usersSlice = createSlice({
       state.deleteStatus = "pending";
     },
     [userDelete.fulfilled]: (state, action) => {
-      const newlist = state.list.filter((user) => user._id !== action.payload);
+      const newlist = state.list.filter(
+        (user) => user._id !== action.payload._id
+      );
       state.list = newlist;
       state.deleteStatus = "success";
     },
