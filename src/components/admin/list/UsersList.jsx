@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { productDelete } from "../../../slices/productsSlice";
 import EditProduct from "../EditProduct";
-import { usersFetch } from "../../../slices/usersSlice";
+import { userDelete, usersFetch } from "../../../slices/usersSlice";
 
 export default function UsersList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleDelete = (id) => {
-    dispatch(productDelete(id));
+    dispatch(userDelete(id));
   };
 
   const { list } = useSelector((state) => state.users);
