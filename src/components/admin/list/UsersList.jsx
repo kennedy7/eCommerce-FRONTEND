@@ -35,18 +35,7 @@ export default function UsersList() {
 
   const columns = [
     { field: "id", headerName: "ID", width: 220 },
-    // {
-    //   field: "name",
-    //   headerName: "Name",
-    //   width: 80,
-    //   renderCell: (params) => {
-    //     return (
-    //       <ImageContainer>
-    //         <img src={params.row.imageUrl} alt="" />
-    //       </ImageContainer>
-    //     );
-    //   },
-    // },
+
     { field: "name", headerName: "Name", width: 130 },
     {
       field: "email",
@@ -87,12 +76,6 @@ export default function UsersList() {
     </div>
   );
 }
-
-const ImageContainer = styled.div`
-  img {
-    height: 40px;
-  }
-`;
 
 const Actions = styled.div`
   width: 100%;
