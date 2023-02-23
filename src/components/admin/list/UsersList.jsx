@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { productDelete } from "../../../slices/productsSlice";
 import EditProduct from "../EditProduct";
+import { usersFetch } from "../../../slices/usersSlice";
 
 export default function UsersList() {
   const dispatch = useDispatch();
@@ -14,42 +15,47 @@ export default function UsersList() {
     dispatch(productDelete(id));
   };
 
-  const { items } = useSelector((state) => state.products);
+  const { list } = useSelector((state) => state.users);
+
+  React.useEffect(() => {
+    dispatch(usersFetch());
+  }, [dispatch]);
+  console.log("users:", list);
+
   const rows =
-    items &&
-    items.map((item) => {
+    list &&
+    list.map((user) => {
       return {
-        id: item._id,
-        imageUrl: item.image.url,
-        pName: item.name,
-        pDesc: item.desc,
-        price: item.price.toLocaleString(),
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        Admin: user.isAdmin,
       };
     });
 
   const columns = [
     { field: "id", headerName: "ID", width: 220 },
+    // {
+    //   field: "name",
+    //   headerName: "Name",
+    //   width: 80,
+    //   renderCell: (params) => {
+    //     return (
+    //       <ImageContainer>
+    //         <img src={params.row.imageUrl} alt="" />
+    //       </ImageContainer>
+    //     );
+    //   },
+    // },
+    { field: "name", headerName: "Name", width: 130 },
     {
-      field: "imageUrl",
-      headerName: "image",
-      width: 80,
-      renderCell: (params) => {
-        return (
-          <ImageContainer>
-            <img src={params.row.imageUrl} alt="" />
-          </ImageContainer>
-        );
-      },
-    },
-    { field: "pName", headerName: "Name", width: 130 },
-    {
-      field: "pDesc",
-      headerName: "Description",
+      field: "email",
+      headerName: "User Email",
       width: 130,
     },
     {
-      field: "price",
-      headerName: "Price",
+      field: "Admin",
+      headerName: "Admin Status",
       width: 130,
     },
     {
@@ -62,9 +68,7 @@ export default function UsersList() {
           <Actions>
             <Delete onClick={() => handleDelete(params.row.id)}>Delete</Delete>
             <EditProduct prodId={params.row.id} />
-            <View onClick={() => navigate(`/product/${params.row.id}`)}>
-              View
-            </View>
+            <View onClick={() => navigate(`/user/${params.row.id}`)}>View</View>
           </Actions>
         );
       },
