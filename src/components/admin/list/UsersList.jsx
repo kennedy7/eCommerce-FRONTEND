@@ -20,7 +20,6 @@ export default function UsersList() {
   React.useEffect(() => {
     dispatch(usersFetch());
   }, [dispatch]);
-  console.log("users:", list);
 
   const rows =
     list &&
@@ -39,7 +38,7 @@ export default function UsersList() {
     { field: "name", headerName: "Name", width: 130 },
     {
       field: "email",
-      headerName: "User Email",
+      headerName: "Email Address",
       width: 130,
     },
     {
@@ -55,9 +54,9 @@ export default function UsersList() {
       renderCell: (params) => {
         return (
           <Actions>
-            <Delete onClick={() => handleDelete(params.row.id)}>Delete</Delete>
-            <EditProduct prodId={params.row.id} />
             <View onClick={() => navigate(`/user/${params.row.id}`)}>View</View>
+            <Delete onClick={() => handleDelete(params.row.id)}>Delete</Delete>
+            {/* <EditProduct prodId={params.row.id} /> */}
           </Actions>
         );
       },
