@@ -1,5 +1,26 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { setHeaders, url } from "../../slices/api";
+
 const UserProfile = () => {
+  const params = useParams();
+
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        setLoading(true);
+        const res = axios.get(`${url}/users/find/${params.id}`, setHeaders());
+        setUser(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
+  });
   return <>UserProfile</>;
 };
 
