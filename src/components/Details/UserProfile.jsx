@@ -7,21 +7,70 @@ import { setHeaders, url } from "../../slices/api";
 const UserProfile = () => {
   const params = useParams();
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    isAdmin: false,
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
+  const [updating, setUpdating] = useState(false);
   useEffect(() => {
     const fetchUser = async () => {
       try {
         setLoading(true);
-        const res = axios.get(`${url}/users/find/${params.id}`, setHeaders());
-        setUser(res.data);
+        const res = await axios.get(
+          `${url}/users/find/${params.id}`,
+          setHeaders()
+        );
+        setUser({ ...res.data, password: "" });
       } catch (error) {
         console.log(error);
       }
-      setLoading(false);
     };
-  });
-  return <>UserProfile</>;
+    fetchUser();
+    setLoading(false);
+  }, [params.id]);
+  return (
+    <StyledProfile>
+      <ProfileContainer>
+        {loading ? (
+          <p>loading...</p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <h3>User Profile</h3>
+            {user.isAdmin ? (
+              <Admin>Admin</Admin>
+            ) : (
+              <Customer>Customer</Customer>
+            )}
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              value={user.name}
+              onChange={(e) => setUser({ ...user, name: e.target.value })}
+            />
+            <label htmlFor="name">Email:</label>
+            <input
+              type="text"
+              id="email"
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
+            />
+            <label htmlFor="name">Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
+            />
+            <button>{updating ? "updating..." : "Update Profile"}</button>
+          </form>
+        )}
+      </ProfileContainer>
+    </StyledProfile>
+  );
 };
 
 export default UserProfile;
