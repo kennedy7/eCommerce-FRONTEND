@@ -37,14 +37,6 @@ const ProfileContainer = styled.div`
     border-bottom: 1px solid gray;
   }
 `;
-const Items = styled.div`
-  span {
-    margin-right: 1.5rem;
-    &:first-child {
-      font-weight: bold;
-    }
-  }
-`;
 const Customer = styled.div`
   color: rgb(38, 198, 249);
   background-color: rgb(38, 198, 249, 0.12);
