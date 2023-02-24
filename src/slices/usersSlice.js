@@ -52,7 +52,7 @@ const usersSlice = createSlice({
       );
       state.list = newList;
       state.deleteStatus = "success";
-      toast.error("User Deleted");
+      toast.error("User Deleted", { position: "bottom-left" });
     },
     [userDelete.rejected]: (state, action) => {
       state.deleteStatus = "rejected";

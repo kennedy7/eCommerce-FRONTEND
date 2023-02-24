@@ -26,7 +26,7 @@ export default function UsersList() {
         id: user._id,
         name: user.name,
         email: user.email,
-        Admin: user.isAdmin,
+        isAdmin: user.isAdmin,
       };
     });
 
@@ -40,13 +40,17 @@ export default function UsersList() {
       width: 130,
     },
     {
-      field: "Admin",
+      field: "isAdmin",
       headerName: "Role",
       width: 100,
       renderCell: (params) => {
         return (
           <div>
-            {params.row.isAdmin ? "Admin" : <Customer>Customer</Customer>}
+            {params.row.isAdmin ? (
+              <Admin>Admin</Admin>
+            ) : (
+              <Customer>Customer</Customer>
+            )}
           </div>
         );
       },
@@ -55,7 +59,7 @@ export default function UsersList() {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 170,
+      width: 120,
       renderCell: (params) => {
         return (
           <Actions>
@@ -72,9 +76,9 @@ export default function UsersList() {
       <DataGrid
         rows={rows}
         columns={columns}
-        // pageSize={5}
-        // rowsPerPageOptions={[5]}
-        rowsPerPageOptions={[5, 10, 20, 50]}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        // rowsPerPageOptions={[5, 10, 20, 50]}
         checkboxSelection
         disableSelectionOnClick
         autoHeight={true}
@@ -105,15 +109,16 @@ const View = styled.button`
 `;
 
 const Customer = styled.div`
-color: rgb(38, 198, 249)
-backgroung-color: rgb(38, 198, 249, 0.12)
-padding: 3px, 5px;
-border-radius: 3px
-font-size: 14px`;
-
+  color: rgb(38, 198, 249);
+  background-color: rgb(38, 198, 249, 0.12);
+  padding: 3px, 5px;
+  border-radius: 3px;
+  font-size: 14px;
+`;
 const Admin = styled.div`
-color: rgb(253, 181, 40)
-backgroung-color: rgb(253, 181, 40, 0.12)
+color: rgb(253, 181, 40);
+background-color: rgb(253, 181, 40, 0.12);
 padding: 3px, 5px;
 border-radius: 3px
-font-size: 14px`;
+font-size: 14px;
+`;
