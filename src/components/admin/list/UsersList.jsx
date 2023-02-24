@@ -111,14 +111,14 @@ const View = styled.button`
 const Customer = styled.div`
   color: rgb(38, 198, 249);
   background-color: rgb(38, 198, 249, 0.12);
-  padding: 3px, 5px;
+  padding: 3px 5px;
   border-radius: 3px;
   font-size: 14px;
 `;
 const Admin = styled.div`
 color: rgb(253, 181, 40);
 background-color: rgb(253, 181, 40, 0.12);
-padding: 3px, 5px;
+padding: 3px 5px;
 border-radius: 3px
 font-size: 14px;
 `;

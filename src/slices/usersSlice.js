@@ -7,6 +7,7 @@ const initialState = {
   list: [],
   status: null,
   deleteStatus: null,
+  updateStatus: null,
 };
 
 export const usersFetch = createAsyncThunk("users/usersFetch", async () => {
