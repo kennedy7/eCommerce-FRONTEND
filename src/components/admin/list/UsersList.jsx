@@ -9,15 +9,15 @@ export default function UsersList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleDelete = (id) => {
-    dispatch(userDelete(id));
-  };
-
   const { list } = useSelector((state) => state.users);
 
   React.useEffect(() => {
     dispatch(usersFetch());
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    dispatch(userDelete(id));
+  };
 
   const rows =
     list &&

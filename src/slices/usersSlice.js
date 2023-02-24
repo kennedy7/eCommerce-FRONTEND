@@ -47,10 +47,10 @@ const usersSlice = createSlice({
       state.deleteStatus = "pending";
     },
     [userDelete.fulfilled]: (state, action) => {
-      const newlist = state.list.filter(
+      const newList = state.list.filter(
         (user) => user._id !== action.payload._id
       );
-      state.list = newlist;
+      state.list = newList;
       state.deleteStatus = "success";
       toast.error("User Deleted");
     },
