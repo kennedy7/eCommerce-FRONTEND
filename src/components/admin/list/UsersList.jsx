@@ -41,8 +41,15 @@ export default function UsersList() {
     },
     {
       field: "Admin",
-      headerName: "Admin Status",
-      width: 130,
+      headerName: "Role",
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <div>
+            {params.row.isAdmin ? "Admin" : <Customer>Customer</Customer>}
+          </div>
+        );
+      },
     },
     {
       field: "actions",
@@ -65,10 +72,12 @@ export default function UsersList() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        // pageSize={5}
+        // rowsPerPageOptions={[5]}
+        rowsPerPageOptions={[5, 10, 20, 50]}
         checkboxSelection
         disableSelectionOnClick
+        autoHeight={true}
       />
     </div>
   );
@@ -94,3 +103,17 @@ const Delete = styled.button`
 const View = styled.button`
   background-color: rgb(80, 200, 40);
 `;
+
+const Customer = styled.div`
+color: rgb(38, 198, 249)
+backgroung-color: rgb(38, 198, 249, 0.12)
+padding: 3px, 5px;
+border-radius: 3px
+font-size: 14px`;
+
+const Admin = styled.div`
+color: rgb(253, 181, 40)
+backgroung-color: rgb(253, 181, 40, 0.12)
+padding: 3px, 5px;
+border-radius: 3px
+font-size: 14px`;
