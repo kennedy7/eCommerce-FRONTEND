@@ -1,13 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import { setHeaders, url } from "../../slices/api";
 
 const UserProfile = () => {
   const params = useParams();
-  const dispatch = useDispatch();
 
   const [user, setUser] = useState({
     name: "",
@@ -16,7 +15,6 @@ const UserProfile = () => {
     password: "",
   });
 
-  console.log(user);
   const [loading, setLoading] = useState(false);
   const [updating, setUpdating] = useState(false);
 
@@ -47,8 +45,10 @@ const UserProfile = () => {
         setHeaders()
       );
       setUser({ ...res.data, password: "" });
+      toast.info("User details Updated!");
     } catch (err) {
       console.log(err);
+      toast.error(err.response?.data);
     }
     setUpdating(false);
   };
