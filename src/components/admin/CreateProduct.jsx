@@ -12,6 +12,7 @@ const CreateProduct = () => {
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -38,6 +39,7 @@ const CreateProduct = () => {
         brand,
         price,
         desc,
+        category,
         image: productImg,
       })
     );
@@ -82,6 +84,15 @@ const CreateProduct = () => {
           onChange={(e) => setDesc(e.target.value)}
           required
         />
+        <select onChange={(e) => setCategory(e.target.value)} required>
+          <option value="">Select Category</option>
+          <option value="Men">Men</option>
+          <option value="Women">Women</option>
+          <option value="Phones">Phones</option>
+          <option value="Laptops">Laptops</option>
+          <option value="Bags">Bags</option>
+          <option value="Furnitures">Furnitures</option>
+        </select>
         <input
           type="text"
           placeholder="Price"

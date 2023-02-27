@@ -21,6 +21,7 @@ export default function EditProduct({ prodId }) {
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
+  const [category, setCategory] = useState("");
   const [currentProd, setCurrentProd] = useState({});
   const [previewImg, setPreviewImg] = useState("");
 
@@ -53,6 +54,7 @@ export default function EditProduct({ prodId }) {
           brand: brand,
           price: price,
           desc: desc,
+          category: category,
         },
       })
     );
@@ -67,6 +69,7 @@ export default function EditProduct({ prodId }) {
     setBrand(selectedProd.brand);
     setPrice(selectedProd.price);
     setDesc(selectedProd.desc);
+    setCategory(selectedProd.category);
     setPreviewImg(selectedProd.image.url);
     setProductImg("");
     // console.log( selectedProd)
@@ -130,6 +133,15 @@ export default function EditProduct({ prodId }) {
                 onChange={(e) => setDesc(e.target.value)}
                 required
               />
+              <select onChange={(e) => setCategory(e.target.value)} required>
+                <option value="">Select Category</option>
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+                <option value="Phones">Phones</option>
+                <option value="Laptops">Laptops</option>
+                <option value="Bags">Bags</option>
+                <option value="Furnitures">Furnitures</option>
+              </select>
               <input
                 type="text"
                 placeholder="Price"
