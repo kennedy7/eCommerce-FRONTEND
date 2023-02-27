@@ -92,10 +92,13 @@ export default function OrdersList() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
+        // rowsPerPageOptions={[5, 10, 20, 30, 50]}
         checkboxSelection
         disableSelectionOnClick
+        autoHeight={true}
+        // autoPageSize
       />
     </div>
   );
