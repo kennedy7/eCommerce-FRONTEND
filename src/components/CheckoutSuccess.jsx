@@ -15,7 +15,7 @@ const CheckOutSuccess = () => {
   }, [cart, dispatch]);
   return (
     <Container>
-      <h2> Checkout success</h2>
+      <h2> Checkout successful</h2>
       <p>We are currently processing your order, Please be patient.</p>
       <p>check your order status on your profile after 10mins.</p>
       <p>
