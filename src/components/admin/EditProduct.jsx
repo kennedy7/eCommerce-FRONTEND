@@ -133,7 +133,11 @@ export default function EditProduct({ prodId }) {
                 onChange={(e) => setDesc(e.target.value)}
                 required
               />
-              <select onChange={(e) => setCategory(e.target.value)} required>
+              <select
+                onChange={(e) => setCategory(e.target.value)}
+                value={category}
+                required
+              >
                 <option value="">Select Category</option>
                 <option value="Men">Men</option>
                 <option value="Women">Women</option>
