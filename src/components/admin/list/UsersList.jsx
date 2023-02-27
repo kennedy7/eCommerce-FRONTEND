@@ -76,9 +76,9 @@ export default function UsersList() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        // rowsPerPageOptions={[5, 10, 20, 50]}
+        // pageSize={5}
+        // rowsPerPageOptions={[5]}
+        rowsPerPageOptions={[5, 10, 20, 50]}
         checkboxSelection
         disableSelectionOnClick
         autoHeight={true}

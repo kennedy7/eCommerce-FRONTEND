@@ -3,11 +3,11 @@ import UsersList from "./list/UsersList";
 
 const Users = () => {
   return (
-    <>
+    <div className="scrollable">
       <Container></Container>
 
       <UsersList />
-    </>
+    </div>
   );
 };
 
