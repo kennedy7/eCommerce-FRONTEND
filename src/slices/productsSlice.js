@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setHeaders, url } from "./api";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useState } from "react";
 const initialState = {
   items: [],
   status: null,
@@ -13,8 +14,15 @@ const initialState = {
 export const productsFetch = createAsyncThunk(
   "products/productsFetch",
   async () => {
+    const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
+    const [sort, setSort] = useState({ sort: "rating", order: "desc" });
     try {
-      const response = await axios.get(`${url}/products`, setHeaders());
+      const response = await axios.get(
+        `${url}/products?page=${page}&sort=${sort.sort},${sort.order}&search=${search}`,
+        // `${url}/products`,
+        setHeaders()
+      );
       return response?.data;
     } catch (error) {
       console.log(error);

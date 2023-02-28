@@ -28,7 +28,7 @@
 .navbar h2{
   font-size: 40px;
 }
-.nav-bag{
+.nav-cart{
    display: flex;
    align-items: center;
 }
@@ -36,7 +36,7 @@
   text-decoration: none;
   color: white;
 }
-.bag-quantity{
+.cart-quantity{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,6 +48,17 @@
   font-weight: 700;
   color: black;
   margin-left: 5px;
+}
+.search{
+  margin-right:15px;
+  height: 40px;
+  align-self: center;
+  outline: none;
+  border:none;
+  width: 400px;
+  border-radius: 4px;
+  padding-left: 50px;
+  font-size: 15px
 }
 
 /* Not-found */
