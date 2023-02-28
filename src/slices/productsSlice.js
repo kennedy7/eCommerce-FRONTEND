@@ -16,10 +16,13 @@ export const productsFetch = createAsyncThunk(
   async () => {
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
+    const [filterCategory, setFilterCategory] = useState("");
     const [sort, setSort] = useState({ sort: "rating", order: "desc" });
     try {
       const response = await axios.get(
-        `${url}/products?page=${page}&sort=${sort.sort},${sort.order}&search=${search}`,
+        `${url}/products?page=${page}&sort=${sort.sort},${
+          sort.order
+        }&category=${filterCategory.toString()}&search=${search}`,
         // `${url}/products`,
         setHeaders()
       );
