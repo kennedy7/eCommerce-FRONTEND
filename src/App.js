@@ -2,7 +2,12 @@ import React from "react";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
@@ -28,7 +33,9 @@ function App() {
         <ToastContainer />
         <NavBar />
         <Routes>
-          <Route path="/" exact element={<Home />} />
+          <Route path="/" exact element={<Navigate to="/products" />} />
+          <Route path="/products" exact element={<Home />} />
+          <Route path="/products/search" exact element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout-success" exact element={<CheckOutSuccess />} />
           <Route path="/register" exact element={<Register />} />

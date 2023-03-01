@@ -14,10 +14,11 @@ export default function ProductsList() {
     dispatch(productDelete(id));
   };
 
-  const { items } = useSelector((state) => state.products);
+  const { items: data } = useSelector((state) => state.products);
+  const products = data.products;
   const rows =
-    items &&
-    items.map((item) => {
+    products &&
+    products.map((item) => {
       return {
         id: item._id,
         imageUrl: item.image.url,
