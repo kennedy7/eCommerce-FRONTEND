@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { logOutUser } from "../slices/authSlice";
 import { toast } from "react-toastify";
-import Search from "./search";
 import { useState } from "react";
 
 const NavBar = () => {
@@ -21,6 +20,8 @@ const NavBar = () => {
     if (e.keyCode === 13) {
       //search
       searchProduct();
+    } else {
+      naviga;
     }
   };
   return (
