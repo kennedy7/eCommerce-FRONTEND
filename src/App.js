@@ -40,7 +40,7 @@ function App() {
           <Route path="/checkout-success" exact element={<CheckOutSuccess />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
-          <Route path="/product/:id" exact element={<Product />} />
+          <Route path="/products/product/:id" exact element={<Product />} />
           <Route path="/order/:id" exact element={<Order />} />
           <Route path="/user/:id" exact element={<UserProfile />} />
           {/* Nested Route */}

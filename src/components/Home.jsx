@@ -1,17 +1,20 @@
 import { Paper } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
 import Paginate from "./Pagination";
 
 // import { useGetAllProductsQuery } from "../slices/productsApi";
-
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 const Home = () => {
   const { items: data, status } = useSelector((state) => state.products);
-  const products = data.products;
+  // const products = data?.products;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const query = useQuery();
 
   // const { data, error, isLoading } = useGetAllProductsQuery();
 
@@ -26,8 +29,8 @@ const Home = () => {
         <>
           <h2>New Arrivals</h2>
           <div className="products">
-            {products &&
-              products?.map((product) => (
+            {data &&
+              data?.map((product) => (
                 <div key={product._id} className="product">
                   <h3>{product.name}</h3>
                   <Link to={`product/${product._id}`}>
@@ -44,9 +47,11 @@ const Home = () => {
                 </div>
               ))}
           </div>
-          <Paper elevation={6}>
-            <Paginate />
-          </Paper>
+          {data ? (
+            <Paper elevation={6}>
+              <Paginate />
+            </Paper>
+          ) : null}
         </>
       ) : status === "pending" ? (
         <p>Loading...</p>

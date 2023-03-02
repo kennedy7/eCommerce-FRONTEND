@@ -14,11 +14,11 @@ export default function ProductsList() {
     dispatch(productDelete(id));
   };
 
-  const { items: data } = useSelector((state) => state.products);
-  const products = data.products;
+  const { items } = useSelector((state) => state.products);
+  // const items = data.items;
   const rows =
-    products &&
-    products.map((item) => {
+    items &&
+    items.map((item) => {
       return {
         id: item._id,
         imageUrl: item.image.url,
@@ -63,7 +63,7 @@ export default function ProductsList() {
           <Actions>
             <Delete onClick={() => handleDelete(params.row.id)}>Delete</Delete>
             <EditProduct prodId={params.row.id} />
-            <View onClick={() => navigate(`/product/${params.row.id}`)}>
+            <View onClick={() => navigate(`/items/product/${params.row.id}`)}>
               View
             </View>
           </Actions>
