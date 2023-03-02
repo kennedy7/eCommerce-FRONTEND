@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logOutUser } from "../slices/authSlice";
 import { toast } from "react-toastify";
 import { useState } from "react";
@@ -9,6 +9,7 @@ const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
   const searchProduct = () => {
@@ -21,7 +22,7 @@ const NavBar = () => {
       //search
       searchProduct();
     } else {
-      naviga;
+      navigate("/");
     }
   };
   return (
