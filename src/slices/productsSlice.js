@@ -22,6 +22,17 @@ export const productsFetch = createAsyncThunk(
   }
 );
 
+export const productsSearch = createAsyncThunk(
+  "products/productsSearch",
+  async (searchQuery) => {
+    try {
+      const response = await axios.get(`${url}/products?${searchQuery}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const productCreate = createAsyncThunk(
   "products/productCreate",
   async (values) => {

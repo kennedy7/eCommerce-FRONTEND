@@ -15,16 +15,17 @@ const NavBar = () => {
   const searchProduct = () => {
     if (search.trim()) {
       //dispatch search
+    } else {
+      navigate("/");
     }
   };
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       //search
       searchProduct();
-    } else {
-      navigate("/");
     }
   };
+
   return (
     <nav className="nav-bar">
       <Link to="/">
