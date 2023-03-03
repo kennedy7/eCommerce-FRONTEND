@@ -1,7 +1,11 @@
 import { Paper } from "@mui/material";
+import axios from "axios";
+import { set } from "immer/dist/internal";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { setHeaders, url } from "../slices/api";
 import { addToCart } from "../slices/cartSlice";
 import Paginate from "./Pagination";
 
@@ -11,10 +15,13 @@ function useQuery() {
 }
 const Home = () => {
   const { items: data, status } = useSelector((state) => state.products);
-  // const products = data?.products;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const query = useQuery();
+
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState({});
 
   // const { data, error, isLoading } = useGetAllProductsQuery();
 
@@ -22,6 +29,18 @@ const Home = () => {
     dispatch(addToCart(product));
     navigate("/cart");
   };
+
+  useEffect(() => {
+    const fetchOrdersBySearch = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`${url}/orders/?`, setHeaders());
+        setSearch(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  });
 
   return (
     <div className="home-container">

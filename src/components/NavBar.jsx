@@ -10,7 +10,6 @@ const NavBar = () => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [search, setSearch] = useState("");
 
   const searchProduct = () => {
     if (search.trim()) {
@@ -19,6 +18,7 @@ const NavBar = () => {
       navigate("/");
     }
   };
+
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       //search
