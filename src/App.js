@@ -25,6 +25,7 @@ import ProductsList from "./components/admin/list/ProductsList";
 import Product from "./components/Details/product";
 import Order from "./components/Details/Order";
 import UserProfile from "./components/Details/UserProfile";
+import Search from "./components/Search";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Navigate to="/products" />} />
           <Route path="/products" exact element={<Home />} />
-          <Route path="/products/search" exact element={<Home />} />
+          <Route path="/products/search" exact element={<Search />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout-success" exact element={<CheckOutSuccess />} />
           <Route path="/register" exact element={<Register />} />

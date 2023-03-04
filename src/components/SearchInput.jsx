@@ -3,32 +3,35 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setHeaders, url } from "../slices/api";
+import { productsSearch } from "../slices/productsSlice";
 
 const SearchInput = () => {
-  const [values, setValues] = useState("");
+  const [keyword, setKeyword] = useState("");
+  // const [results, setResults] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  console.log(values);
+  console.log(keyword);
+  // console.log(results);
 
   const handleSearch = async (e) => {
-    // if (search.trim()) {
     e.preventDefault();
-    try {
-      const { data } = axios.get(
-        `${url}/products/search/${values.search}`,
-        setHeaders()
-      );
-      setValues({ values, products: data });
+    dispatch(productsSearch(keyword));
+    // try {
+    //   const { data } = await axios.get(
+    //     `${url}/products/search/${keyword}`,
+    //     setHeaders()
+    //   );
+    //   setResults({ results: data });
+    navigate("/products/search");
 
-      navigate("/search");
-    } catch (error) {
-      console.log(error);
-    }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
-      //search
       handleSearch(e);
     }
   };
@@ -41,9 +44,9 @@ const SearchInput = () => {
           className="search"
           style={{ maxWidth: "100%", display: "inline-block" }}
           placeholder="Search products, brands and categories"
-          value={values.search}
+          value={keyword}
           onKeyDown={handleKeyDown}
-          onChange={(e) => setValues({ ...values, search: e.target.value })}
+          onChange={(e) => setKeyword(e.target.value)}
         />
         <button
           type="submit"

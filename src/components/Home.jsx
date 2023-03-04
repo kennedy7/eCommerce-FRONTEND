@@ -24,14 +24,6 @@ const Home = () => {
     navigate("/cart");
   };
 
-  // const searchProduct = () => {
-  //   if (search.trim()) {
-  //     dispatch(productsSearch({}));
-  //   } else {
-  //     navigate("/");
-  //   }
-  // };
-
   return (
     <div className="home-container">
       {status === "success" ? (

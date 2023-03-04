@@ -4,10 +4,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 const initialState = {
   items: [],
+  keyword: "",
+  results: [],
   status: null,
   createStatus: null,
   deleteStatus: null,
   updateStatus: null,
+  searchSatus: null,
 };
 
 export const productsFetch = createAsyncThunk(
@@ -24,12 +27,10 @@ export const productsFetch = createAsyncThunk(
 
 export const productsSearch = createAsyncThunk(
   "products/productsSearch",
-  async (searchQuery) => {
+  async (keyword) => {
     try {
       const response = await axios.get(
-        `${url}/products/search?searchQuery=${
-          searchQuery.search || "none"
-        }&category=${searchQuery.category}`,
+        `${url}/products/search/${keyword}`,
         setHeaders()
       );
       console.log(response?.data);
@@ -145,6 +146,18 @@ const productsSlice = createSlice({
     },
     [productUpdate.rejected]: (state, action) => {
       state.updateStatus = "rejected";
+    },
+
+    [productsSearch.pending]: (state, action) => {
+      state.searchSatus = "pending";
+    },
+    [productsSearch.fulfilled]: (state, action) => {
+      state.searchSatus = "success";
+      state.results = action.payload;
+      // state.keyword = action.keyword;
+    },
+    [productsSearch.rejected]: (state, action) => {
+      state.searchSatus = "rejected";
     },
   },
 });

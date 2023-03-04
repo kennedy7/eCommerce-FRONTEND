@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { logOutUser } from "../slices/authSlice";
 import { toast } from "react-toastify";
-import SearchInput from "./Search";
+import SearchInput from "./SearchInput";
 
 const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
