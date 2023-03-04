@@ -1,65 +1,35 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logOutUser } from "../slices/authSlice";
 import { toast } from "react-toastify";
-import { useState } from "react";
-import { productsSearch } from "../slices/productsSlice";
+import SearchInput from "./Search";
 
 const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState([]);
-
-  console.log(search);
-
-  const searchProduct = (e) => {
-    e.preventDefault();
-    if (search.trim()) {
-      dispatch(productsSearch({ search, category: category.join(",") }));
-    } else {
-      navigate("/");
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 13) {
-      //search
-      searchProduct();
-    }
-  };
 
   return (
     <nav className="nav-bar">
       <Link to="/">
         <h2>Ken's OnlineStore</h2>
       </Link>
-      <form onSubmit={searchProduct}>
+
+      {/* <form className="d-flex" role="search">
         <input
-          type="text"
-          className="search"
-          style={{ maxWidth: "100%", display: "inline-block" }}
+          className="form-control me-2"
+          type="search"
           placeholder="Search products, brands and categories"
+          aria-label="Search"
           value={search}
-          onKeyDown={handleKeyDown}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => setSearch({ ...search, search: e.target.value })}
         />
-        <button
-          type="submit"
-          style={{
-            padding: 10,
-            borderRadius: 5,
-            border: 0,
-          }}
-        >
+        <button className="btn btn-outline-success" type="submit">
           Search
         </button>
-      </form>
-      {/* <Search setSearch={(search) => setSearch(search)} /> */}
+      </form> */}
+      <SearchInput />
 
       <Link to="/cart">
         <div className="nav-cart">

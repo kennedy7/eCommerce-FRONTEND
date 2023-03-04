@@ -16,12 +16,6 @@ const Home = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const query = useQuery();
-  const page = query.get("page");
-  const searchQuery = query.get("searchQuery");
-
-  const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState("");
 
   // const { data, error, isLoading } = useGetAllProductsQuery();
 
@@ -45,26 +39,22 @@ const Home = () => {
           <h2>New Arrivals</h2>
           <div className="products">
             {data &&
-              data
-                ?.filter((product) =>
-                  product.name.toLowerCase().includes(query)
-                )
-                .map((product) => (
-                  <div key={product._id} className="product">
-                    <h3>{product.name}</h3>
-                    <Link to={`product/${product._id}`}>
-                      <img src={product.image?.url} alt={product.name} />
-                    </Link>
+              data?.map((product) => (
+                <div key={product._id} className="product">
+                  <h3>{product.name}</h3>
+                  <Link to={`product/${product._id}`}>
+                    <img src={product.image?.url} alt={product.name} />
+                  </Link>
 
-                    <div className="details">
-                      <span>{product.desc}</span>
-                      <span className="price">${product.price}</span>
-                    </div>
-                    <button onClick={() => handleAddToCart(product)}>
-                      Add to Cart
-                    </button>
+                  <div className="details">
+                    <span>{product.desc}</span>
+                    <span className="price">${product.price}</span>
                   </div>
-                ))}
+                  <button onClick={() => handleAddToCart(product)}>
+                    Add to Cart
+                  </button>
+                </div>
+              ))}
           </div>
           {data ? (
             <Paper elevation={6}>
