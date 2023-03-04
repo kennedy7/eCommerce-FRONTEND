@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { logOutUser } from "../slices/authSlice";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { productsSearch } from "../slices/productsSlice";
 
 const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
@@ -11,9 +12,15 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const searchProduct = () => {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState([]);
+
+  console.log(search);
+
+  const searchProduct = (e) => {
+    e.preventDefault();
     if (search.trim()) {
-      //dispatch search
+      dispatch(productsSearch({ search, category: category.join(",") }));
     } else {
       navigate("/");
     }

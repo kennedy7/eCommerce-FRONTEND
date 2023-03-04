@@ -54,7 +54,7 @@ const Order = () => {
             <Items>
               {order.products?.map((product, index) => (
                 <Item key={index}>
-                  <span>{product.name}</span>
+                  <span>{product.description}</span>
                   <span>{product.quantity}</span>
                   <span>
                     {" "}
