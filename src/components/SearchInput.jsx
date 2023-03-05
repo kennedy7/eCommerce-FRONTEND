@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setHeaders, url } from "../slices/api";
+import { useDispatch, useSelector } from "react-redux";
 import { productsSearch } from "../slices/productsSlice";
 
 const SearchInput = () => {
+  // const { keyword } = useSelector((state) => state.products);
+
   const [keyword, setKeyword] = useState("");
-  // const [results, setResults] = useState([]);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,17 +17,7 @@ const SearchInput = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     dispatch(productsSearch(keyword));
-    // try {
-    //   const { data } = await axios.get(
-    //     `${url}/products/search/${keyword}`,
-    //     setHeaders()
-    //   );
-    //   setResults({ results: data });
     navigate("/products/search");
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   const handleKeyDown = (e) => {

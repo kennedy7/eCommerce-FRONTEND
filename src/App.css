@@ -86,6 +86,11 @@
   font-weight: 400;
   text-align: center;
 }
+.home-container h3{
+  font-size: 15px;
+  font-weight: 200;
+  text-align: center;
+}
 .products{
   display: flex;
   justify-content: space-between;
