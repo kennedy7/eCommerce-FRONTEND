@@ -25,7 +25,7 @@ import ProductsList from "./components/admin/list/ProductsList";
 import Product from "./components/Details/product";
 import Order from "./components/Details/Order";
 import UserProfile from "./components/Details/UserProfile";
-import Search from "./components/Search";
+import Search from "./components/SearchPage";
 
 function App() {
   return (

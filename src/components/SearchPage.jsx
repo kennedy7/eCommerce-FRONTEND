@@ -1,7 +1,6 @@
 import { Paper } from "@mui/material";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
 import Paginate from "./Pagination";
@@ -10,9 +9,6 @@ const Search = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { results: data, searchSatus } = useSelector((state) => state.products);
-
-  const [loading, setLoading] = useState(false);
-  //   const [results, setResults] = useState([]);
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
@@ -23,7 +19,13 @@ const Search = () => {
     <div className="home-container">
       <h2>Search Results</h2>
 
-      {data?.length < 1 ? <h3>No Products Found!</h3> : `Found ${data?.length}`}
+      {data?.length < 1 ? (
+        <h3>No Products Found!</h3>
+      ) : (
+        <h3>
+          Found {data?.length} {data?.length === 1 ? "product" : "products"}
+        </h3>
+      )}
       {searchSatus === "success" ? (
         <>
           <div className="products">
