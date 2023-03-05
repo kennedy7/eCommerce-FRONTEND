@@ -9,7 +9,7 @@ import Paginate from "./Pagination";
 const Search = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { results } = useSelector((state) => state.products);
+  const { results: data, searchSatus } = useSelector((state) => state.products);
 
   const [loading, setLoading] = useState(false);
   //   const [results, setResults] = useState([]);
@@ -21,48 +21,41 @@ const Search = () => {
 
   return (
     <div className="home-container">
-      {
-        loading ? (
-          "loading..."
-        ) : (
-          <>
-            <h2>Search Results</h2>
+      <h2>Search Results</h2>
 
-            {results?.length < 1
-              ? "No Products Found!"
-              : `Found ${results?.length}`}
+      {data?.length < 1 ? <h3>No Products Found!</h3> : `Found ${data?.length}`}
+      {searchSatus === "success" ? (
+        <>
+          <div className="products">
+            {data &&
+              data?.map((product) => (
+                <div key={product._id} className="product">
+                  <h3>{product.name}</h3>
+                  <Link to={`product/${product._id}`}>
+                    <img src={product.image?.url} alt={product.name} />
+                  </Link>
 
-            {/* <div className="products">
-                {results &&
-                  results
-                    ?.map((product) => (
-                      <div key={product._id} className="product">
-                        <h3>{product.name}</h3>
-                        <Link to={`product/${product._id}`}>
-                          <img src={product.image?.url} alt={product.name} />
-                        </Link>
-    
-                        <div className="details">
-                          <span>{product.desc}</span>
-                          <span className="price">${product.price}</span>
-                        </div>
-                        <button onClick={() => handleAddToCart(product)}>
-                          Add to Cart
-                        </button>
-                      </div>
-                    ))}
-              </div> */}
-            {/* {data ? (
-                <Paper elevation={6}>
-                  <Paginate />
-                </Paper>
-              ) : null} */}
-          </>
-        )
-        //  : (
-        //     <p>Oops... Unexpected error occured...</p>
-        //   )
-      }
+                  <div className="details">
+                    <span>{product.desc}</span>
+                    <span className="price">${product.price}</span>
+                  </div>
+                  <button onClick={() => handleAddToCart(product)}>
+                    Add to Cart
+                  </button>
+                </div>
+              ))}
+          </div>
+          {/* {data ? (
+            <Paper elevation={6}>
+              <Paginate />
+            </Paper>
+          ) : null} */}
+        </>
+      ) : searchSatus === "pending" ? (
+        <p>Loading...</p>
+      ) : (
+        <h3>Check the keyword(s)</h3>
+      )}
     </div>
   );
 };
