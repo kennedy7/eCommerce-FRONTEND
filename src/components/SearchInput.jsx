@@ -12,7 +12,6 @@ const SearchInput = () => {
   const dispatch = useDispatch();
 
   console.log(keyword);
-  // console.log(results);
 
   const handleSearch = async (e) => {
     e.preventDefault();

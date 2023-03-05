@@ -1,16 +1,11 @@
 import { Paper } from "@mui/material";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
 import Paginate from "./Pagination";
 
 // import { useGetAllProductsQuery } from "../slices/productsApi";
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
 const Home = () => {
   const { items: data, status } = useSelector((state) => state.products);
 
