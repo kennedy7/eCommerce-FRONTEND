@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productsSearch } from "../slices/productsSlice";
 
 const SearchInput = () => {
-  const [keyword, setKeyword] = useState("");
+  // const { keyword } = useSelector((state) => state.products);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useParams();
 
-  // console.log(keyword);
+  const [keyword, setKeyword] = useState(params.keyword);
+
+  console.log(keyword);
 
   const handleSearch = async (e) => {
     e.preventDefault();
     dispatch(productsSearch(keyword));
-    navigate("/products/search");
+    navigate(`/products/search/${keyword}`);
   };
 
   const handleKeyDown = (e) => {
@@ -29,7 +32,6 @@ const SearchInput = () => {
         <input
           type="search"
           className="search"
-          // style={{ maxWidth: "100%", display: "inline-block" }}
           placeholder="Search products, brands and categories"
           value={keyword}
           onKeyDown={handleKeyDown}

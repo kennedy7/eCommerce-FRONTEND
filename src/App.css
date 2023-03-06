@@ -98,6 +98,24 @@
   flex-wrap: wrap;
   margin-top: 2rem;
 }
+.categories{
+   /* width: 270px;
+  height: 1000px; */
+  /* display: flex; */
+  padding: 1rem; 
+   border-radius: 15px;
+  box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.5), 2px 2px 5px rgba(94, 104, 121, 0.3); 
+}
+.categories .ButtonGroup{
+  padding: 1rem; 
+  border-radius: 15px;
+ box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.5), 2px 2px 5px rgba(94, 104, 121, 0.3); 
+
+}
+.categories Button{
+  height: 30px;
+  
+}
 .product{
   width: 270px;
   max-width: 100%;

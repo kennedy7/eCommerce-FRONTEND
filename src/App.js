@@ -36,12 +36,17 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Navigate to="/products" />} />
           <Route path="/products" exact element={<Home />} />
-          <Route path="/products/search" exact element={<Search />} />
+          <Route path="/products/search/:keyword" exact element={<Search />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout-success" exact element={<CheckOutSuccess />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/products/product/:id" exact element={<Product />} />
+          <Route
+            path="/products/search/:keyword/product/:id"
+            exact
+            element={<Product />}
+          />
           <Route path="/order/:id" exact element={<Order />} />
           <Route path="/user/:id" exact element={<UserProfile />} />
           {/* Nested Route */}

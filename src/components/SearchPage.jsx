@@ -19,15 +19,15 @@ const Search = () => {
     <div className="home-container">
       <h2>Search Results</h2>
 
-      {data?.length < 1 ? (
-        <h3>No Products Found!</h3>
-      ) : (
-        <h3>
-          Found {data?.length} {data?.length === 1 ? "product" : "products"}
-        </h3>
-      )}
       {searchSatus === "success" ? (
         <>
+          {data?.length < 1 ? (
+            <h3>No Products Found!</h3>
+          ) : (
+            <h3>
+              Found {data?.length} {data?.length === 1 ? "product" : "products"}
+            </h3>
+          )}
           <div className="products">
             {data &&
               data?.map((product) => (

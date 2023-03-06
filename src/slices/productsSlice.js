@@ -153,8 +153,9 @@ const productsSlice = createSlice({
     },
     [productsSearch.fulfilled]: (state, action) => {
       state.searchSatus = "success";
+
       state.results = action.payload;
-      state.keyword = action.keyword;
+      // state.keyword = action.keyword;
     },
     [productsSearch.rejected]: (state, action) => {
       state.searchSatus = "rejected";

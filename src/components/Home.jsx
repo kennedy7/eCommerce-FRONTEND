@@ -28,20 +28,20 @@ const Home = () => {
 
   console.log(allCategories);
   return (
-    <div className="home-container">
-      <div className="categories">
-        <ButtonGroup>
-          {allCategories.map((category) => (
-            <Button
-              onClick={() => handleClick(category)}
-              key={category}
-              className="btn-color-primary"
-              style={{ margin: "5px" }}
-            >
-              {category}
-            </Button>
-          ))}
-        </ButtonGroup>
+    <div className="categories">
+      <ButtonGroup>
+        {allCategories.map((category) => (
+          <Button
+            onClick={() => handleClick(category)}
+            key={category}
+            className="btn-color-primary"
+            style={{ margin: "5px" }}
+          >
+            {category}
+          </Button>
+        ))}
+      </ButtonGroup>
+      <div className="home-container">
         {status === "success" ? (
           <>
             <h2>New Arrivals</h2>
