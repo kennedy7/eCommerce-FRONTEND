@@ -18,7 +18,11 @@ const Home = () => {
     dispatch(addToCart(product));
     navigate("/cart");
   };
-
+  const allCategories = [
+    "All",
+    ...new Set(data.map((product) => product.category)),
+  ];
+  console.log(allCategories);
   return (
     <div className="home-container">
       {status === "success" ? (

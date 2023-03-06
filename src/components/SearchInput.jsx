@@ -4,14 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { productsSearch } from "../slices/productsSlice";
 
 const SearchInput = () => {
-  // const { keyword } = useSelector((state) => state.products);
-
   const [keyword, setKeyword] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log(keyword);
+  // console.log(keyword);
 
   const handleSearch = async (e) => {
     e.preventDefault();
