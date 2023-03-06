@@ -59,7 +59,8 @@
   width: 400px;
   border-radius: 4px;
   padding-left: 50px;
-  font-size: 15px
+  font-size: 15px;
+   display: inline-block
 }
 
 /* Not-found */

@@ -29,7 +29,7 @@ const SearchInput = () => {
         <input
           type="search"
           className="search"
-          style={{ maxWidth: "100%", display: "inline-block" }}
+          // style={{ maxWidth: "100%", display: "inline-block" }}
           placeholder="Search products, brands and categories"
           value={keyword}
           onKeyDown={handleKeyDown}
