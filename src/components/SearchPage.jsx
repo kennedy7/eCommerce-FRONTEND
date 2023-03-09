@@ -25,7 +25,7 @@ const Search = () => {
             <h3>No Products Found!</h3>
           ) : (
             <h3>
-              Found {data?.length} {data?.length === 1 ? "product" : "products"}
+              Found {data?.length} {data?.length === 1 ? "Product" : "Products"}
             </h3>
           )}
           <div className="products">
