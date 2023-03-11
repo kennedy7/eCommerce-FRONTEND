@@ -1,9 +1,9 @@
-import { Paper } from "@mui/material";
+// import { Paper } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
-import Paginate from "./Pagination";
+// import Paginate from "./Pagination";
 
 const Search = () => {
   const navigate = useNavigate();
